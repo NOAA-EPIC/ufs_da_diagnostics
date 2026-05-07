@@ -73,4 +73,13 @@ Building Documentation
     cd docs
     make html
 
+or
+
+.. code-block:: bash
+
+    python -m sphinx -b html docs docs/_build/html
+    python -m sphinx -b latex docs/ docs/_build/latex
+    cd docs/_build/latex
+    latexmk -xelatex
+    
 The generated documentation will appear in ``docs/_build/html``.
