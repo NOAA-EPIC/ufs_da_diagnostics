@@ -614,12 +614,16 @@ def main():
     report = generate_report(config, obs_counts, jo_data, jo_total, convergence, departures, obs_errors)
 
     if args.output:
+        # Create directory if needed
+        outdir = os.path.dirname(args.output)
+        if outdir and not os.path.exists(outdir):
+            os.makedirs(outdir, exist_ok=True)
+
         with open(args.output, 'w') as f:
             f.write(report)
         print(f"Report written to: {args.output}", file=sys.stderr)
     else:
         print(report)
-
 
 if __name__ == "__main__":
     """Execute the JEDI log parser when run as a script.
