@@ -29,3 +29,11 @@ Contents
     api/plots
 
     developer_guide
+
+.. toctree::
+   :maxdepth: 1
+   :caption: Appendices
+
+   appendix_system_access
+   appendix_slurm_basics
+   appendix_filesystem_modules
