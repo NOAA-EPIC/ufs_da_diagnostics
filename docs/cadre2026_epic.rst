@@ -37,6 +37,7 @@ Use SSH with X11 forwarding enabled:
 For detailed system login instructions (macOS/Windows, SSH, X11, PuTTY, XQuartz),
 including screenshots and troubleshooting notes, see
 
+
 - :ref:`Appendix A — System Access <appendix_system_access>`
 - :ref:`Appendix B — Slurm Basics <appendix_slurm_basics>`
 - :ref:`Appendix C — Filesystem and Modules <appendix_filesystem_modules>`
