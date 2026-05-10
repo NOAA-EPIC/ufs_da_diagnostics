@@ -59,24 +59,28 @@ A minimal YAML configuration for increment maps:
 
 .. code-block:: yaml
 
-    experiment:
-      name: EXP
-      increment_file: inc.nc4
+    experiments:
+      - name: EXP
+        prefix: /path/to/exp/ufsda.t00z.atminc.cubed_sphere_grid.tile
 
-    output:
-      directory: increment_maps/
-      plots: true
+    grid:
+      prefix: /path/to/grid/C96_grid.tile
 
-    variables:
-      - u
-      - v
-      - t
+    output_dir: increment_maps/
+
+    vars:
+      - u_inc
+      - v_inc
+      - T_inc
+
+    levels:
+      - 126
+      - 75
 
 
 Outputs
 -------
 
-- ``tile_maps/`` — native FV3 6‑tile increment maps  
 - ``global_maps/`` — stitched global maps for each variable and level  
 - ``zonal_means/`` — zonal‑mean cross sections (latitude vs level)  
 
