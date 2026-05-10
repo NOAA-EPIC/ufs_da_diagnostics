@@ -47,28 +47,46 @@ A minimal YAML configuration for observation diagnostics:
 
 .. code-block:: yaml
 
-    input:
-      ioda_file: obs.nc4
-      hofx_bkg: hofx_bkg.nc4
-      hofx_ana: hofx_ana.nc4
+    output_dir: obs_diag/
 
-    output:
-      directory: obs_diag/
-      plots: true
+    # Optional: shared prefix for all diagnostic files
+    prefix_root: /path/to/ioda/diagnostics
 
-    variables:
-      - brightness_temperature
-      - humidity
+    observations:
+      - label: ATMS
+        type: atms
+        variable: brightnessTemperature
+        file: diag.atms.nc
+        diagnostics:
+          hist: true
+          stats: true
+          extended: true
+          scanpos: true
+          latbins: true
+
+      - label: GNSSRO
+        type: scalar
+        variable: bendingAngle
+        file: diag.gnssro.nc
+        diagnostics:
+          hist: true
+
+      - label: SATWND
+        type: vector
+        variable: windSpeed
+        file: diag.satwnd.nc
+        diagnostics:
+          hist: true
 
 
 Outputs
 -------
 
-- ``scalar_hist/`` — scalar variable histograms (e.g., temperature, humidity)
-- ``vector_hist/`` — vector component histograms (e.g., wind components)
-- ``scanpos/`` — ATMS scan‑position bias diagnostics
-- ``qc/`` — QC summaries and filtered statistics
-- ``plots/`` — extended RMS and bias figures
+- ``*_hist/`` — scalar or vector histograms (e.g., temperature, humidity, winds)
+- ``scanpos/`` — ATMS scan‑position diagnostics
+- ``latbins/`` — ATMS latitude‑binned diagnostics
+- ``stats/`` — mean/std statistics
+- ``stats_extended/`` — RMS, NRMS, BC‑RMS diagnostics
 
 These diagnostics provide a detailed view of observation‑space
 performance and complement the increment and spectral diagnostics.
