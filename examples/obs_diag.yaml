@@ -1,4 +1,7 @@
-outdir: "/home/jongkim/exp/diag-obs"
+output_dir: "/home/jongkim/exp/diag-obs"
+
+# Shared prefix for all diag files
+prefix_root: "/home/jongkim/exp"
 
 observations:
 
@@ -8,7 +11,7 @@ observations:
   - label: ATMS
     type: atms
     variable: brightnessTemperature
-    diag: "/home/jongkim/exp/diag.atms_n20_2024022400.nc"
+    file: "diag.atms_n20_2024022400.nc"
     diagnostics:
       hist: true
       stats: true
