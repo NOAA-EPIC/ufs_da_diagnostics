@@ -71,29 +71,100 @@ low‑wavenumber variance and reduced high‑wavenumber variance.
 YAML Example
 ------------
 
-Below is a minimal YAML configuration for CTRL vs EXP increment spectra:
+Below are two YAML configurations used for spectral diagnostics in the
+training workflow.
+
+CTRL vs EXP Increment Spectra
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. code-block:: yaml
 
-    experiment:
-      ctrl: CTRL
-      exp: EXP
-      ctrl_increment: ctrl_inc.nc4
-      exp_increment: exp_inc.nc4
+    vars:
+      - T_inc
+      - sphum_inc
+      - u_inc
+      - v_inc
 
-    output:
-      directory: spectra/
-      plots: true
+    levels:
+      - 126
+      - 75
 
-For background vs increment spectra:
+    zonal_mean:
+      enabled: true
+      full_vertical: true
+
+    experiments:
+      - name: ctrl
+        prefix: "/work2/noaa/epic/CADRE2026/cadre26.8434573.day1/output/ufsda.t00z.atminc.cubed_sphere_grid.tile"
+
+      - name: atms-thining
+        prefix: "/work2/noaa/epic/CADRE2026/cadre26.8487556.day2_nicas-length-scale/output/ufsda.t00z.atminc.cubed_sphere_grid.tile"
+
+    grid:
+      prefix: "/work2/noaa/epic/CADRE2026/grid/C96_grid.tile"
+
+    spectra:
+      levels:
+        - 126
+        - 75
+      output_dir: "./day2_nicas_length_scale/spectra-inc"
+
+
+Background vs Increment Spectra
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. code-block:: yaml
 
-    experiment:
-      name: CTRL
-      background: bkg.nc4
-      increment: inc.nc4
+    vars:
+      - T_inc
+      - sphum_inc
+      - u_inc
+      - v_inc
 
-    output:
-      directory: spectra/
-      plots: true
+    levels:
+      - 126
+      - 75
+
+    zonal_mean:
+      enabled: true
+      full_vertical: true
+
+    background:
+      atm_file: /work2/noaa/epic/CADRE2026/cadre26.8434573.day1/bkg/ufsda.t18z.atm.f006.cubed_sphere_grid.nc
+      vars:
+        - ugrd
+        - vgrd
+        - tmp
+        - spfh
+
+    increments:
+      prefix: /work2/noaa/epic/CADRE2026/cadre26.8434573.day1/output/ufsda.t00z.atminc.cubed_sphere_grid.tile
+      grid_prefix: /work2/noaa/epic/CADRE2026/grid/C96_grid.tile
+      vars:
+        - u_inc
+        - v_inc
+        - T_inc
+        - sphum_inc
+
+    mapping:
+      - bkg: ugrd
+        inc: u_inc
+        long_name: "Zonal wind"
+
+      - bkg: vgrd
+        inc: v_inc
+        long_name: "Meridional wind"
+
+      - bkg: tmp
+        inc: T_inc
+        long_name: "Temperature"
+
+      - bkg: spfh
+        inc: sphum_inc
+        long_name: "Specific humidity"
+
+    spectra:
+      levels:
+        - 126
+        - 75
+      output_dir: "./day1_ctrl/spectra-bkg-inc"
