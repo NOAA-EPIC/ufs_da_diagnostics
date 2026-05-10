@@ -19,7 +19,7 @@ The main driver for observation‑space diagnostics is:
 
 .. code-block:: bash
 
-    ufsda-obs-diag --yaml config/obs_diag.yaml
+    ufsda-obs-diag --yaml --yaml /path/to/obs_diag.yaml
 
 This tool computes O–B and O–A departures, bias, RMS, normalized RMS,
 bias‑corrected RMS, QC‑filtered statistics, and channel‑wise summaries
