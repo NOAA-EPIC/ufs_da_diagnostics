@@ -21,7 +21,7 @@ from two experiments (e.g., CTRL vs EXP).
 
 .. code-block:: bash
 
-    ufsda-spectra-ana-inc config/spectra_ana_inc.yaml
+    ufsda-spectra-ana-inc --yaml /path/to/spectra_ana_inc.yaml
 
 
 Background vs Increment Spectra
@@ -32,7 +32,7 @@ spectrum for a single experiment.
 
 .. code-block:: bash
 
-    ufsda-spectra-bkg-inc config/spectra_bkg_inc.yaml
+    ufsda-spectra-bkg-inc --yaml /path/to/spectra_bkg_inc.yaml
 
 
 Example Figure
