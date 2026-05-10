@@ -14,7 +14,7 @@ The main driver for increment diagnostics is:
 
 .. code-block:: bash
 
-    ufsda-increment-maps config/increment_maps.yaml
+    ufsda-inc-maps config/increment_maps.yaml
 
 This tool loads FV3 tiles, constructs global stitched fields, and
 computes zonal‑mean cross sections for each variable and level specified
