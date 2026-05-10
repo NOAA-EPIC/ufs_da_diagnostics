@@ -111,16 +111,51 @@ def unified_histogram(omb, oma, qc, title_label, outpath, qc_label="QC", nbins=N
 class ObsDiagPlotter:
     def __init__(self, config):
         self.config = config
+        
+        # ============================================================
+        # Prefix resolution for obs_diag.yaml
+        # ============================================================
+        prefix_root = self.config.get("prefix_root", None)
+
+        if prefix_root is not None:
+            for obs in self.config.get("observations", []):
+                # If user provides "file", convert to full diag path
+                if "file" in obs:
+                    obs["diag"] = os.path.join(prefix_root, obs["file"])
+
+                # If user already provided "diag", leave it untouched
+                # (backward compatibility)        
 
     def run(self):
         obs_list = self.config.get("observations", [])
+
+        # ============================================================
+        # Unified output directory resolution
+        # Preferred: output_dir
+        # Legacy fallback: outdir
+        # Default: ./plot-outputs-obs
+        # ============================================================
+        global_outdir = (
+            self.config.get("output_dir") or
+            self.config.get("outdir") or
+            "./plot-outputs-obs"
+        )
+
         for obs_cfg in obs_list:
             label = obs_cfg["label"]
             otype = obs_cfg["type"]
             var = obs_cfg["variable"]
+
+            # diag path already resolved by prefix_root logic in __init__
             diag = obs_cfg.get("diag", obs_cfg.get("file"))
-            global_outdir = self.config.get("outdir", "./plot-outputs-obs")
-            outdir = obs_cfg.get("outdir", global_outdir)
+
+            # Per-observation override (same unified logic)
+            outdir = (
+                obs_cfg.get("output_dir") or
+                obs_cfg.get("outdir") or
+                global_outdir
+            )
+
             diags_cfg = obs_cfg.get("diagnostics", {})
 
             print(f"[INFO] Processing {label} ({otype}) from {diag}")
