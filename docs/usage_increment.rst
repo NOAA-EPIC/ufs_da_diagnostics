@@ -4,8 +4,8 @@ Using Increment Diagnostics
 The increment diagnostics subsystem generates FV3 6‑tile maps, stitched
 global maps, and zonal‑mean summaries for analysis increments. These
 diagnostics provide spatial insight into how the analysis modifies the
-background state. For the mathematical formulation and example spectra,
-see :ref:`Diagnostics Overview <diagnostics_overview>`.
+background state. They are complementary to observation‑space and
+spectral diagnostics but do not compute spectra.
 
 Running the CLI Tool
 --------------------
@@ -24,32 +24,28 @@ in the YAML file.
 Example Figures
 ---------------
 
-Background vs Increment Spectra
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Global Increment Map
+~~~~~~~~~~~~~~~~~~~~
 
-.. figure:: _static/images/spectra/bkg_T_inc_L75.png
+.. figure:: _static/images/increments/sphum_inc_L126_ctrl.png
    :width: 90%
    :align: center
 
-   Background and increment spectra for temperature at model level 75.
-   The increment spectrum shows how analysis updates redistribute
-   variance across spatial scales relative to the background. Enhanced
-   small‑scale variance indicates localized corrections, while reduced
-   high‑wavenumber variance indicates smoother increments.
+   Example stitched global increment map for specific humidity at
+   model level 126. Positive increments indicate moistening applied
+   by the analysis, while negative increments indicate drying.
 
 
-NICAS Length‑Scale Example
-~~~~~~~~~~~~~~~~~~~~~~~~~~
+Zonal‑Mean Increment Cross‑Section
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. figure:: _static/images/spectra/T_inc_ctrl_vs_length-scale_spectra_L75.png
+.. figure:: _static/images/increments/sphum_inc_zonal_mean_full_ctrl.png
    :width: 90%
    :align: center
 
-   Comparison of CTRL and NICAS length‑scale experiments for temperature
-   increments at level 75. The NICAS experiment uses a larger horizontal
-   correlation length scale in the SABER NICAS operator, broadening the
-   background‑error correlations and shifting variance toward large
-   scales.
+   Full‑vertical zonal‑mean increment cross‑section for specific
+   humidity. This view highlights the vertical structure and
+   latitudinal distribution of the analysis increments.
 
 
 YAML Configuration
@@ -72,6 +68,7 @@ A minimal YAML configuration for increment maps:
       - u_inc
       - v_inc
       - T_inc
+      - sphum_inc
 
     levels:
       - 126
