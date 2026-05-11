@@ -168,3 +168,21 @@ Background vs Increment Spectra
         - 126
         - 75
       output_dir: "./day1_ctrl/spectra-bkg-inc"
+
+Outputs
+-------
+
+The spectra diagnostics tool produces the following outputs inside the
+directory specified by ``output_dir`` in the YAML file:
+
+- ``spectra_1d/`` — 1D isotropic spectra for each variable and level  
+- ``spectra_2d/`` — 2D wavenumber–level color maps (kx vs level or
+  isotropic wavenumber vs level), including CTRL, EXP, and ratio/difference  
+- ``vertical_variance/`` — vertical variance profiles and EXP/CTRL ratios  
+- ``figures/`` — PNG figures for all spectra diagnostics, including  
+  1D spectra, 2D spectra, and vertical variance plots
+
+These outputs provide scale‑dependent insight into how increments or
+experiment differences redistribute variance across horizontal scales
+and vertical levels.
+
