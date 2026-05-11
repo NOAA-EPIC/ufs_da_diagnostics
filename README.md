@@ -31,7 +31,7 @@ pip install -e .
 
 The latest documentation is available on Read the Docs:
 
-📘 **Latest docs:** https://ufs-da-diagnostics.readthedocs.io/en/latest/
+**Latest docs:** https://ufs-da-diagnostics.readthedocs.io/en/latest/
 
 [![Documentation Status](https://readthedocs.org/projects/ufs-da-diagnostics/badge/?version=latest)](https://ufs-da-diagnostics.readthedocs.io/en/latest/)
 
