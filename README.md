@@ -1,21 +1,22 @@
 # UFS DA Diagnostics
 
-`ufs_da_diagnostics` is a general diagnostics toolkit for the UFS Data Assimilation (DA) system. It provides consistent, experiment‑ready diagnostics for analysis increments, spectral characteristics, and observation‑space behavior. The tools currently support FV3‑JEDI and are being architected to extend naturally to additional UFS DA applications, including future land and marine data assimilation workflow systems.
+`ufs_da_diagnostics` is a diagnostics toolkit for FV3‑JEDI atmospheric
+data assimilation (DA) experiments. It provides consistent,
+experiment‑ready diagnostics for analysis increments, spectral
+characteristics, and observation‑space behavior. The toolkit currently
+supports the standard FV3‑JEDI canned case and includes observation
+diagnostics for a limited set of five observation types:
 
-The package contains three complementary diagnostics subsystems:
+- ASCAT MetOp‑B scatterometer winds (VertInterp)
+- ATMS NOAA‑20 microwave radiances (CRTM)
+- Surface pressure from SYNOP/METAR/ships/buoys (SfcCorrected)
+- COSMIC‑2 GNSSRO bending angle (NBAM)
+- GOES‑16 Atmospheric Motion Vectors (AMV operator)
 
-- **Increment diagnostics** — stitched global maps and zonal‑mean
-  cross‑sections of analysis increments  
-- **Spectral diagnostics** — 1D and 2D spectra, vertical variance
-  profiles, and experiment‑difference spectral analysis  
-- **Observation diagnostics** — statistics derived from both IODA files
-  and JEDI logs, including counts, QC summaries, innovations (O–B, O–A),
-  histograms, RMS/bias metrics, latitudinally binned statistics, and
-  satellite‑specific checks such as ATMS scan‑position diagnostics
-
-Each subsystem is driven by a YAML configuration and produces
-standardized output directories suitable for experiment comparison,
-documentation, and automated pipelines.
+While the present focus is FV3‑JEDI, the architecture is designed to
+extend to additional UFS DA applications—including land and marine DA
+systems—as those workflows mature and broader observation support becomes
+available.
 
 ---
 
