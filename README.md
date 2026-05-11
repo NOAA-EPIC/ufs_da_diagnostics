@@ -1,9 +1,6 @@
 # UFS DA Diagnostics
 
-`ufs_da_diagnostics` is a general diagnostics toolkit for the UFS Data
-Assimilation (DA) system. It provides consistent, experiment‑ready
-diagnostics for analysis increments, spectral characteristics, and
-observation‑space behavior. The tools are currently designed for FV3‑JEDI but will be architected to support additional UFS DA applications, including future land and marine data assimilation workflow systems. 
+`ufs_da_diagnostics` is a general diagnostics toolkit for the UFS Data Assimilation (DA) system. It provides consistent, experiment‑ready diagnostics for analysis increments, spectral characteristics, and observation‑space behavior. The tools currently support FV3‑JEDI and are being architected to extend naturally to additional UFS DA applications, including future land and marine data assimilation workflow systems.
 
 The package contains three complementary diagnostics subsystems:
 
