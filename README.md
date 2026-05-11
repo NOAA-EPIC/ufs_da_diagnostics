@@ -18,6 +18,8 @@ extend to additional UFS DA applications—including land and marine DA
 systems—as those workflows mature and broader observation support becomes
 available.
 
+In progress [documentation](https://ufs-da-diagnostics.readthedocs.io/en/latest/) is available.
+
 ---
 
 ## Installation
@@ -26,12 +28,3 @@ available.
 git clone https://github.com/jkbk2004/ufs_da_diagnostics
 cd ufs_da_diagnostics
 pip install -e .
-
-## Documentation
-
-The latest documentation is available on Read the Docs:
-
-**Latest docs:** https://ufs-da-diagnostics.readthedocs.io/en/latest/
-
-[![Documentation Status](https://readthedocs.org/projects/ufs-da-diagnostics/badge/?version=latest)](https://ufs-da-diagnostics.readthedocs.io/en/latest/)
-
