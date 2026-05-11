@@ -27,4 +27,6 @@ documentation, and automated pipelines.
 ## Installation
 
 ```bash
-pip install ufs_da_diagnostics
+git clone https://github.com/jkbk2004/ufs_da_diagnostics
+cd ufs_da_diagnostics
+pip install -e .
