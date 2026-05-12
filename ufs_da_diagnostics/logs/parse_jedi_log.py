@@ -21,6 +21,7 @@ Typical usage:
     python parse_jedi_log.py jedi.log --output report.txt
 """
 
+import os
 import re
 import sys
 import argparse
