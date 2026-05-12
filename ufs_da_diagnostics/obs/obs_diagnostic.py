@@ -17,6 +17,8 @@ diagnostics to run (histograms, stats, extended stats, scan‑position,
 latitude‑binned), and output directories. See the user guide for details.
 """
 
+import os
+import sys
 import argparse
 import yaml
 
