@@ -41,32 +41,6 @@ def channel_groups():
 def plot_stats_atms_extended(f, varname, label, outdir):
     """
     Generate extended ATMS OMB/OMA diagnostics.
-
-    Parameters
-    ----------
-    f : netCDF4.Dataset
-        Open IODA diagnostic file containing ATMS groups.
-    varname : str
-        Name of the variable (e.g., "brightnessTemperature").
-    label : str
-        Label used in figure title and output filename.
-    outdir : str
-        Directory where the output PNG will be saved.
-
-    Notes
-    -----
-    - QC mask uses EffectiveQC2 (QC2 == 0).
-    - Observation error σ_o is taken from EffectiveError2, falling back
-      to EffectiveError1 or EffectiveError0 if needed.
-    - Normalized RMS is computed as:
-
-          RMS_n = sqrt(mean((OMB / σ_o)^2))
-
-      which is dimensionless and equals sqrt(Jo/p).
-
-    - BC-RMS is the sample standard deviation of OMB/OMA:
-
-          BC-RMS = std(OMB)
     """
 
     os.makedirs(outdir, exist_ok=True)
@@ -131,15 +105,7 @@ def plot_stats_atms_extended(f, varname, label, outdir):
         mean_omb[ch] = np.mean(o)
         mean_oma[ch] = np.mean(a)
 
-        # ---------------------------------------------------------
-        # BC-RMS (Bias-Corrected RMS)
-        # ---------------------------------------------------------
-        # BC-RMS is the sample standard deviation of the departures
-        # after removing the mean bias:
-        #
-        #   BC-RMS = sqrt( 1/(N-1) * Σ (d_i - mean(d))^2 )
-        #
-        # It is expressed in Kelvin and does NOT use σ_o.
+        # BC-RMS
         std_omb[ch] = np.nanstd(o, ddof=1)
         std_oma[ch] = np.nanstd(a, ddof=1)
 
@@ -152,23 +118,49 @@ def plot_stats_atms_extended(f, varname, label, outdir):
 
         rms_diff[ch] = rms_oma[ch] - rms_omb[ch]
 
-        # ---------------------------------------------------------
-        # Normalized RMS (RMS_n)
-        # ---------------------------------------------------------
-        # RMS_n measures the size of the departures relative to the
-        # assigned observation error σ_o (EffectiveError2):
-        #
-        #   RMS_n = sqrt( mean( (OMB / σ_o)^2 ) )
-        #
-        # RMS_n is dimensionless. RMS_n^2 equals Jo/p.
+        # Normalized RMS
         nrms_omb[ch] = np.sqrt(np.mean((o / sigma) ** 2))
         nrms_oma[ch] = np.sqrt(np.mean((a / sigma) ** 2))
 
-        # ---------------------------------------------------------
-        # Debug print: RMS_n^2 (equals Jo/p)
-        # ---------------------------------------------------------
+        # Debug RMS_n^2
         rmsn2 = nrms_omb[ch] ** 2
         print(f"[DEBUG] Ch {ch+1:02d}  RMS_n^2 = {rmsn2:.4f}")
+
+    # -----------------------------------------------------------------
+    # Total RMS_n^2 (OMB and OMA)
+    # -----------------------------------------------------------------
+    total_omb_num = 0.0
+    total_oma_num = 0.0
+    total_nobs = 0
+
+    for ch in range(nchan):
+        mask = (
+            (qc[:, ch] == 0)
+            & np.isfinite(omb[:, ch])
+            & np.isfinite(oma[:, ch])
+            & np.isfinite(Rstd[:, ch])
+            & (Rstd[:, ch] > 0)
+        )
+        if not np.any(mask):
+            continue
+
+        o = omb[mask, ch].astype("float64")
+        a = oma[mask, ch].astype("float64")
+        sigma = Rstd[mask, ch].astype("float64")
+
+        total_omb_num += np.sum((o / sigma) ** 2)
+        total_oma_num += np.sum((a / sigma) ** 2)
+        total_nobs    += np.sum(mask)
+
+    if total_nobs > 0:
+        total_rmsn2_omb = total_omb_num / total_nobs
+        total_rmsn2_oma = total_oma_num / total_nobs
+
+        print("--------------------------------------------------------")
+        print(f"[INFO] ATMS total obs used (QC2==0) = {total_nobs:,d}")
+        print(f"[INFO] ATMS RMS_n^2 (OMB) = {total_rmsn2_omb:.6f}")
+        print(f"[INFO] ATMS RMS_n^2 (OMA) = {total_rmsn2_oma:.6f}")
+        print("--------------------------------------------------------")
 
     # -----------------------------------------------------------------
     # Plotting
@@ -185,11 +177,8 @@ def plot_stats_atms_extended(f, varname, label, outdir):
         for name, c1, c2, color in channel_groups():
             ax.axvspan(c1 - 0.5, c2 + 0.5, color=color, alpha=0.25, zorder=0)
 
-    # -------------------------
     # Panel 1: Mean & Std
-    # -------------------------
     shade(ax_meanstd)
-
     ax_meanstd.plot(chans, mean_omb, "o-", color="blue", label="Mean OMB")
     ax_meanstd.plot(chans, mean_oma, "o-", color="red", label="Mean OMA")
     ax_meanstd.set_ylabel("Mean")
@@ -219,9 +208,7 @@ def plot_stats_atms_extended(f, varname, label, outdir):
         frameon=True
     )
 
-    # -------------------------
     # Panel 2: RMS
-    # -------------------------
     shade(ax_rms)
     ax_rms.plot(chans, rms_omb, "^-", color="black", label="RMS OMB")
     ax_rms.plot(chans, rms_oma, "^-", color="magenta", label="RMS OMA")
@@ -230,9 +217,7 @@ def plot_stats_atms_extended(f, varname, label, outdir):
     ax_rms.set_ylabel("RMS")
     ax_rms.legend(loc="upper left", fontsize=8)
 
-    # -------------------------
     # Panel 3: RMS Difference
-    # -------------------------
     shade(ax_rmsdiff)
     ax_rmsdiff.plot(chans, rms_diff, "o-", color="green",
                     label="RMS(OMA) – RMS(OMB)")
@@ -241,14 +226,10 @@ def plot_stats_atms_extended(f, varname, label, outdir):
     ax_rmsdiff.set_ylabel("Difference")
     ax_rmsdiff.legend(loc="lower left", fontsize=8)
 
-    # -------------------------
     # Panel 4: Normalized RMS + BC-RMS
-    # -------------------------
     shade(ax_norm)
-
     ax_norm.plot(chans, nrms_omb, "^-", color="black", label="NRMS OMB")
     ax_norm.plot(chans, nrms_oma, "^-", color="magenta", label="NRMS OMA")
-
     ax_norm.plot(chans, bc_rms_omb, "s--", color="orange", label="BC-RMS OMB")
     ax_norm.plot(chans, bc_rms_oma, "s--", color="purple", label="BC-RMS OMA")
 
@@ -264,9 +245,7 @@ def plot_stats_atms_extended(f, varname, label, outdir):
 
     ax_norm.legend(loc="upper right", fontsize=8)
 
-    # -----------------------------------------------------------------
     # Title
-    # -----------------------------------------------------------------
     fig.suptitle(
         f"{label} Extended OMB/OMA Stats (QC2==0)",
         fontsize=13,
