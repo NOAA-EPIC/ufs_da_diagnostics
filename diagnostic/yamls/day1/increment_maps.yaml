@@ -17,9 +17,9 @@ experiments:
     prefix: "EXPDIR/output/ufsda.t00z.atminc.cubed_sphere_grid.tile"
 
 #  - name: atms-thining
-#    prefix: "/work2/noaa/epic/CADRE2026/cadre26.8487557.day3_thinning/output/ufsda.t00z.atminc.cubed_sphere_grid.tile"
+#    prefix: "Day3EXPDIR/output/ufsda.t00z.atminc.cubed_sphere_grid.tile"
 
 grid:
-  prefix: "/work2/noaa/epic/CADRE2026/grid/C96_grid.tile"
+  prefix: "GRIDDIR/C96_grid.tile"
 
 output_dir: "./day1_ctrl/inc_plots"

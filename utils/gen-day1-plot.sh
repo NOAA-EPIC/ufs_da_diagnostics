@@ -2,19 +2,23 @@
 
 set -x
 
-path2yaml=/work2/noaa/epic/weihuang/cadre/CADRE-DA-training/diagnostic/yamls
-path2output=/work2/noaa/epic/weihuang/cadre/CADRE-DA-training/year2_cases/exp_case/cadre26_day1.8909339
+path2yaml=/scratch/wei/cadre/cadre26_noaa_tutorial/ufs_da_diagnostics/diagnostic/yamls
+day1output=/scratch/wei/cadre/cadre26_noaa_tutorial/exp_case/wei_cadre26.8
+griddir=/scratch/cadre26/input_data/grid
+expname=day1
 
 for yamlfile in increment_maps.yaml  obs_diag.yaml  spectra_bkg_inc.yaml
 do
-   sed -e "s?EXPDIR?${path2output}?g" ${path2yaml}/day1/${yamlfile} > ${yamlfile}
+   sed -e "s?EXPDIR?${day1output}?g" \
+       -e "s?GRIDDIR?${griddir}?g" \
+       ${path2yaml}/${expname}/${yamlfile} > ${yamlfile}
 done
 
-export QT_QPA_PLATFORM=offscreen
-export MPLBACKEND=Agg
+#export QT_QPA_PLATFORM=offscreen
+#export MPLBACKEND=Agg
 
-ufsda-spectra-ana-inc --yaml spectra_bkg_inc.yaml
+ufsda-spectra-bkg-inc --yaml spectra_bkg_inc.yaml
 ufsda-inc-maps --yaml increment_maps.yaml
 ufsda-obs-diag --yaml obs_diag.yaml
-ufsda-jedi-log ${path2output}/OUTPUT.fv3jedi --output day1_log_report.txt
+ufsda-jedi-log ${day1output}/OUTPUT.fv3jedi --output log_report_${expname}.txt
 

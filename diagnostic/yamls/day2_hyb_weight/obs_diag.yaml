@@ -1,7 +1,7 @@
 output_dir: "./day2_hyb_weight/obs-diag"
 
 # Shared prefix for all diag files
-prefix_root: "Day2hyb_wghtEXPDIR/output"
+prefix_root: "Day2EXPDIR/output"
 
 observations:
 
