@@ -2,9 +2,9 @@
 
 set -x
 
-path2yaml=/work2/noaa/epic/weihuang/cadre/CADRE-DA-training/diagnostic/yamls
-day1output=/work2/noaa/epic/weihuang/cadre/CADRE-DA-training/year2_cases/exp_case/cadre26_day1.8909339
-day3output=/work2/noaa/epic/weihuang/cadre/CADRE-DA-training/year2_cases/exp_case/cadre26_Day3_exp_obs_error.8912363
+path2yaml=/scratch/wei/cadre/cadre26_noaa_tutorial/ufs_da_diagnostics/diagnostic/yamls
+day1output=/scratch/wei/cadre/cadre26_noaa_tutorial/exp_case/wei_cadre26.8
+day3output=/scratch/wei/cadre/cadre26_noaa_tutorial/exp_case/Day3_exp_obs_error.12
 griddir=/scratch/cadre26/input_data/grid
 expname=day3_atms_err
 
