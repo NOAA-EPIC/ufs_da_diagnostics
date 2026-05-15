@@ -1,0 +1,25 @@
+vars:
+  - T_inc
+  - sphum_inc
+  - u_inc
+  - v_inc
+
+levels:
+  - 126
+  - 75
+
+zonal_mean:
+  enabled: true
+  full_vertical: true
+
+experiments:
+  - name: ctrl
+    prefix: "Day1EXPDIR/output/ufsda.t00z.atminc.cubed_sphere_grid.tile"
+
+  - name: atms_err08
+    prefix: "Day3EXPDIR/output/ufsda.t00z.atminc.cubed_sphere_grid.tile"
+
+grid:
+  prefix: "/work2/noaa/epic/CADRE2026/grid/C96_grid.tile"
+
+output_dir: "./day3_atms_err08/spectra-inc"
