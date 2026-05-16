@@ -1,3 +1,23 @@
 .left-caption p.caption {
-    text-align: left !important;
+   text-align: left !important;
+
+.red { color: red; }
+
+.underline {
+   text-decoration: underline;
+}
+
+.bolditalic {
+   font-weight: bold;
+   font-style: italic;
+}
+
+table.align-default {
+   margin-left: 0px;
+   margin-right: auto;
+}
+
+table.align-center {
+   margin-left: 0px;
+   margin-right: auto;
 }
