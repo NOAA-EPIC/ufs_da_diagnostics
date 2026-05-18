@@ -16,5 +16,5 @@ export MPLBACKEND=Agg
 ufsda-spectra-bkg-inc --yaml spectra_bkg_inc.yaml
 ufsda-inc-maps --yaml increment_maps.yaml
 ufsda-obs-diag --yaml obs_diag.yaml
-ufsda-jedi-log ${path2output}/OUTPUT.fv3jedi --output day1_log_report.txt
+ufsda-jedi-log ${path2output}/OUTPUT.fv3jedi --output log_report_day1.txt
 
