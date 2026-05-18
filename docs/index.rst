@@ -8,11 +8,16 @@ Contents
 
 .. toctree::
     :maxdepth: 2
+    :caption: Getting Started
 
     installation
     quickstart
     cadre2026_epic
     diagnostics_overview
+
+.. toctree::
+    :maxdepth: 2
+    :caption: Usage
 
     usage_spectra
     usage_increment
@@ -21,15 +26,17 @@ Contents
     usage_logs
     usage_plots
     usage_single_obs
-    
+
+.. toctree::
+    :maxdepth: 2
+    :caption: API Reference
+
     api/overview
     api/spectra
     api/increment
     api/obs
     api/log
     api/plots
-
-    developer_guide
 
 .. toctree::
    :maxdepth: 1
@@ -38,3 +45,9 @@ Contents
    appendix_system_access
    appendix_slurm_basics
    appendix_filesystem_modules
+
+.. toctree::
+    :maxdepth: 1
+    :caption: Developer Guide
+
+    developer_guide
