@@ -20,7 +20,8 @@ Contents
     usage_observation_tools
     usage_logs
     usage_plots
-
+    usage_single_obs
+    
     api/overview
     api/spectra
     api/increment
