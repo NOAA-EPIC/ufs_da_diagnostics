@@ -17,7 +17,7 @@ export QT_QPA_PLATFORM=offscreen
 export MPLBACKEND=Agg
 
 ufsda-spectra-ana-inc --yaml spectra_ana_inc.yaml
-#ufsda-inc-maps --yaml increment_maps.yaml
-#ufsda-obs-diag --yaml obs_diag.yaml
-#ufsda-jedi-log ${day2_nicas_length_scale_output}/OUTPUT.fv3jedi --output day2_nicas_length_scale_log_report.txt
+ufsda-inc-maps --yaml increment_maps.yaml
+ufsda-obs-diag --yaml obs_diag.yaml
+ufsda-jedi-log ${day2_nicas_length_scale_output}/OUTPUT.fv3jedi --output log_report_day2_nicas_length_scale.txt
 
