@@ -13,7 +13,7 @@ done
 export QT_QPA_PLATFORM=offscreen
 export MPLBACKEND=Agg
 
-ufsda-spectra-ana-inc --yaml spectra_bkg_inc.yaml
+ufsda-spectra-bkg-inc --yaml spectra_bkg_inc.yaml
 ufsda-inc-maps --yaml increment_maps.yaml
 ufsda-obs-diag --yaml obs_diag.yaml
 ufsda-jedi-log ${path2output}/OUTPUT.fv3jedi --output day1_log_report.txt
