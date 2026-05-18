@@ -1,25 +1,39 @@
-vars:
-  - T_inc
-  - sphum_inc
-  - u_inc
-  - v_inc
+background:
+  atm_file: EXPDIR/bkg/ufsda.t18z.atm.f006.cubed_sphere_grid.nc
+  vars:
+    - ugrd
+    - vgrd
+    - tmp
+    - spfh
 
-levels:
-  - 126
-  - 75
+increments:
+  prefix: EXPDIR/output/ufsda.t00z.atminc.cubed_sphere_grid.tile
+  grid_prefix: /work2/noaa/epic/CADRE2026/grid/C96_grid.tile
+  vars:
+    - u_inc
+    - v_inc
+    - T_inc
+    - sphum_inc
 
-zonal_mean:
-  enabled: true
-  full_vertical: true
+mapping:
+  - bkg: ugrd
+    inc: u_inc
+    long_name: "Zonal wind"
 
-experiments:
-  - name: ctrl
-    prefix: "EXPDIR/output/ufsda.t00z.atminc.cubed_sphere_grid.tile"
+  - bkg: vgrd
+    inc: v_inc
+    long_name: "Meridional wind"
 
-  - name: atms-thining
-    prefix: "EXPDIR/output/ufsda.t00z.atminc.cubed_sphere_grid.tile"
+  - bkg: tmp
+    inc: T_inc
+    long_name: "Temperature"
 
-grid:
-  prefix: "/work2/noaa/epic/CADRE2026/grid/C96_grid.tile"
+  - bkg: spfh
+    inc: sphum_inc
+    long_name: "Specific humidity"
 
-output_dir: ./day1_ctrl/spectra-bkg-inc
+spectra:
+  levels:
+    - 126
+    - 75
+  output_dir: ./day1_ctrl/spectra-bkg-inc
