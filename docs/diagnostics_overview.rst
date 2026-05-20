@@ -48,73 +48,70 @@ Spectral Diagnostics
 Formulation
 -----------
 
-Zonal Fourier Transform
-~~~~~~~~~~~~~~~~~~~~~~~
+2‑D Fourier Transform
+~~~~~~~~~~~~~~~~~~~~~
 
-For a field :math:`x(\lambda, \phi)` on a regular longitude grid:
+Spectral diagnostics in this package use a full 2‑D horizontal Fourier
+transform. For a field :math:`x(x, y)` on an :math:`N_x \times N_y` grid:
 
 .. math::
 
-   \hat{x}_k(\phi) =
-   \frac{1}{N_\lambda}
-   \sum_{n=0}^{N_\lambda - 1}
-   x(\lambda_n, \phi)\, e^{-i k \lambda_n}
+   F(k_x, k_y) =
+   \sum_{x=0}^{N_x-1}
+   \sum_{y=0}^{N_y-1}
+   x(x, y)\,
+   e^{-i 2\pi \left( \frac{k_x x}{N_x} + \frac{k_y y}{N_y} \right)}
+
+Each pair :math:`(k_x, k_y)` corresponds to one *grid‑scale sinusoidal wave*
+with a specific wavelength and direction.
 
 Power Spectrum
 ~~~~~~~~~~~~~~
 
 .. math::
 
-   P(k) = \langle |\hat{x}_k(\phi)|^2 \rangle_{\phi}
+   P(k_x, k_y) = |F(k_x, k_y)|^2
 
-**Meaning:** Distribution of variance across spatial scales.
+This gives the energy contribution of each grid‑scale wave.
+
+Isotropic Spectrum
+~~~~~~~~~~~~~~~~~~
+
+The 2‑D power spectrum is radially averaged into bins of total wavenumber
+
+.. math::
+
+   K = \sqrt{k_x^2 + k_y^2}
+
+to produce a 1‑D isotropic spectrum :math:`P(K)`.
+
+This represents the distribution of variance across spatial scales.
 
 Spectral Ratio (EXP vs CTRL)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. math::
 
-   R(k) = \frac{P_{\mathrm{EXP}}(k)}{P_{\mathrm{CTRL}}(k)}
+   R(K) = \frac{P_{\mathrm{EXP}}(K)}{P_{\mathrm{CTRL}}(K)}
 
-**Meaning:**  
-- :math:`R(k) > 1` → EXP has more variance at scale :math:`k`  
-- :math:`R(k) < 1` → EXP has less variance  
+Interpretation:
+- :math:`R(K) > 1` → EXP has more variance at scale :math:`K`
+- :math:`R(K) < 1` → EXP has less variance
 
+Example: CTRL vs Hybrid Weight
+------------------------------
 
-Background vs Increment Spectra
--------------------------------
-
-.. figure:: _static/images/spectra/bkg_T_inc_L75.png
+.. figure:: _static/images/spectra/T_inc_ctrl_vs_hyb_weight_spectra_L75.png
    :width: 90%
    :align: center
    :class: left-caption
 
-   Background and increment spectra for temperature at model level 75.
-   The increment spectrum shows how analysis updates redistribute
-   variance across spatial scales relative to the background. Enhanced
-   small‑scale variance indicates localized corrections, while reduced
-   high‑wavenumber variance indicates smoother increments.
+   Isotropic increment spectra for temperature at model level 75.
+   The hybrid-weight experiment modifies the scale distribution of
+   increment variance relative to CTRL.
 
 
-NICAS Length‑Scale Comparison
------------------------------
 
-The NICAS experiment modifies the static background‑error covariance by
-increasing the horizontal correlation length scale specified in the
-SABER NICAS operator. A larger length scale produces broader spatial
-correlations and smoother increments, which appear in the spectra as
-enhanced low‑wavenumber variance and reduced high‑wavenumber variance.
-
-.. figure:: _static/images/spectra/T_inc_ctrl_vs_length-scale_spectra_L75.png
-   :width: 90%
-   :align: center
-   :class: left-caption
-
-   Comparison of CTRL and NICAS length‑scale experiments for temperature
-   increments at level 75. The NICAS experiment uses a larger horizontal
-   correlation length scale in the SABER NICAS operator, broadening the
-   background‑error correlations. This increases large‑scale variance
-   and suppresses small‑scale variance, producing smoother increments.
 
 
 Observation Statistics
