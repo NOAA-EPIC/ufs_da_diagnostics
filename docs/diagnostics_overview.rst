@@ -45,14 +45,20 @@ diagnostics and provide example figures illustrating their use.
 Spectral Diagnostics
 ====================
 
-Formulation
------------
+Overview
+--------
+
+Spectral diagnostics quantify how variance is distributed across spatial
+scales. The UFS DA diagnostics compute *isotropic 1‑D spectra* derived
+from a full *2‑D horizontal Fourier transform*. This reveals how the
+background (BKG), increments (INC), and experiment differences modify
+energy across scales.
 
 2‑D Fourier Transform
-~~~~~~~~~~~~~~~~~~~~~
+---------------------
 
-Spectral diagnostics in this package use a full 2‑D horizontal Fourier
-transform. For a field :math:`x(x, y)` on an :math:`N_x \times N_y` grid:
+For a horizontal field :math:`x(x, y)` on an :math:`N_x \times N_y` grid,
+the 2‑D Discrete Fourier Transform is
 
 .. math::
 
@@ -62,53 +68,128 @@ transform. For a field :math:`x(x, y)` on an :math:`N_x \times N_y` grid:
    x(x, y)\,
    e^{-i 2\pi \left( \frac{k_x x}{N_x} + \frac{k_y y}{N_y} \right)}
 
-Each pair :math:`(k_x, k_y)` corresponds to one *grid‑scale sinusoidal wave*
-with a specific wavelength and direction.
+Each pair :math:`(k_x, k_y)` corresponds to one *grid‑scale sinusoidal
+wave* with a specific wavelength and direction.
 
 Power Spectrum
-~~~~~~~~~~~~~~
+--------------
+
+The 2‑D power spectrum is
 
 .. math::
 
    P(k_x, k_y) = |F(k_x, k_y)|^2
 
-This gives the energy contribution of each grid‑scale wave.
+This represents the energy contribution of each grid‑scale wave.
 
 Isotropic Spectrum
-~~~~~~~~~~~~~~~~~~
+------------------
 
-The 2‑D power spectrum is radially averaged into bins of total wavenumber
+The 2‑D spectrum is radially averaged into bins of total wavenumber
 
 .. math::
 
    K = \sqrt{k_x^2 + k_y^2}
 
-to produce a 1‑D isotropic spectrum :math:`P(K)`.
+to produce a 1‑D isotropic spectrum :math:`P(K)`. This gives the
+distribution of variance across spatial scales.
 
-This represents the distribution of variance across spatial scales.
+Parseval Consistency
+--------------------
+
+The total variance in physical space equals the total power in spectral
+space:
+
+.. math::
+
+   \sum_{x,y} x(x,y)^2
+   =
+   \frac{1}{N_x N_y}
+   \sum_{k_x,k_y} |F(k_x, k_y)|^2
+
+This ensures that the isotropic spectrum is a true variance
+decomposition by scale.
+
+Background vs Increment Spectra (Control Experiment)
+----------------------------------------------------
+
+The background (BKG) spectrum typically follows a smooth power‑law decay,
+reflecting the model’s natural distribution of variance. The increment
+(INC) spectrum is much smaller and shows how the analysis updates
+redistribute variance across scales.
+
+A *healthy* DA system produces increments that:
+
+- contain most of their energy at large scales  
+- have very little high‑wavenumber energy  
+- do not inject noise at small scales  
+
+In the control experiment, the increment spectrum exhibits a *large‑scale
+plateau*. This is expected: the largest scales are dominated by broad,
+domain‑wide adjustments, and the isotropic bins at the smallest
+wavenumbers contain only a few modes, producing a flat appearance.
+
+.. figure:: _static/images/spectra/bkg_T_inc_L75.png
+   :width: 90%
+   :align: center
+   :class: left-caption
+
+   Background and increment spectra for temperature at model level 75 in
+   the control experiment. The increment spectrum is smooth and confined
+   to large scales. The plateau at the lowest wavenumbers reflects broad,
+   domain‑scale adjustments and the small number of modes in the first
+   isotropic bins.
 
 Spectral Ratio (EXP vs CTRL)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+----------------------------
+
+The spectral ratio compares the scale‑dependent variance between two
+experiments:
 
 .. math::
 
    R(K) = \frac{P_{\mathrm{EXP}}(K)}{P_{\mathrm{CTRL}}(K)}
 
 Interpretation:
-- :math:`R(K) > 1` → EXP has more variance at scale :math:`K`
-- :math:`R(K) < 1` → EXP has less variance
 
-Example: CTRL vs Hybrid Weight
-------------------------------
+- :math:`R(K) > 1` — EXP has **more energy in the grid‑scale waves** at scale :math:`K`
+- :math:`R(K) < 1` — EXP has **less energy** at that scale
+
+NICAS Length‑Scale Experiment
+-----------------------------
+
+Increasing the NICAS horizontal correlation length scale broadens the
+background‑error correlations. A broader correlation function produces
+smoother increments and increases variance at large spatial scales.
+
+Because the NICAS operator is normalized, the variance increase appears
+across all wavenumbers, but the effect is strongest at the largest
+scales (small K), where long‑range correlations dominate.
+
+.. figure:: _static/images/spectra/T_inc_ctrl_vs_nicas_length_scale_spectra_L75.png
+   :width: 90%
+   :align: center
+   :class: left-caption
+
+   CTRL vs NICAS length‑scale increment spectra at model level 75.
+   Increasing the NICAS horizontal correlation length scale boosts
+   variance across all scales, with the largest impact at the broadest
+   grid‑scale waves (lowest wavenumbers).
+
+Hybrid Weight Experiment
+------------------------
+
+The hybrid-weight experiment modifies the balance between ensemble and
+static covariance contributions. This changes the scale distribution of
+increment variance relative to CTRL.
 
 .. figure:: _static/images/spectra/T_inc_ctrl_vs_hyb_weight_spectra_L75.png
    :width: 90%
    :align: center
    :class: left-caption
 
-   Isotropic increment spectra for temperature at model level 75.
-   The hybrid-weight experiment modifies the scale distribution of
-   increment variance relative to CTRL.
+   CTRL vs hybrid-weight increment spectra at level 75. Differences in
+   the hybrid weighting alter the scale distribution of increment energy.
 
 
 
