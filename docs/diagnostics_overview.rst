@@ -159,12 +159,10 @@ NICAS Length‑Scale Experiment
 -----------------------------
 
 Increasing the NICAS horizontal correlation length scale broadens the
-background‑error correlations. A broader correlation function produces
-smoother increments and increases variance at large spatial scales.
-
-Because the NICAS operator is normalized, the variance increase appears
-across all wavenumbers, but the effect is strongest at the largest
-scales (small K), where long‑range correlations dominate.
+static covariance’s spatial correlations. The static covariance itself is
+unchanged in shape; only the length scale parameter increases. This
+produces smoother increments and enhances variance at the largest
+spatial scales (small K), while reducing variance at smaller scales.
 
 .. figure:: _static/images/spectra/T_inc_ctrl_vs_nicas_length_scale_spectra_L75.png
    :width: 90%
@@ -173,16 +171,17 @@ scales (small K), where long‑range correlations dominate.
 
    CTRL vs NICAS length‑scale increment spectra at model level 75.
    Increasing the NICAS horizontal correlation length scale boosts
-   variance across all scales, with the largest impact at the broadest
-   grid‑scale waves (lowest wavenumbers).
+   large‑scale variance and suppresses small‑scale variance, producing
+   smoother increments.
 
 Static Background Covariance Weight Experiment
 ----------------------------------------------
 
-This experiment increases the weight of the static background‑error
-covariance in the hybrid formulation. A larger static weight strengthens
-the NICAS-based static correlations and reduces the influence of the
-flow‑dependent ensemble covariance.
+This experiment increases the weight of the climatology‑based static
+background‑error covariance in the hybrid formulation. The static
+covariance itself is unchanged; only its relative contribution to the
+total hybrid covariance increases compared to the flow‑dependent
+ensemble covariance.
 
 Increasing the static weight enhances variance at the largest spatial
 scales (small K) while suppressing variance at smaller scales. This
@@ -196,8 +195,7 @@ produces smoother increments dominated by broad, domain‑scale structure.
    CTRL vs increased static background‑covariance weight for temperature
    increments at level 75. The increased static weight boosts large‑scale
    variance and damps small‑scale variance, reflecting the dominance of
-   smoother static correlations.
-
+   smoother climatological static covariance.
 
 
 Observation Statistics
