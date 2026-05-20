@@ -57,7 +57,7 @@ energy across scales.
 2‑D Fourier Transform
 ---------------------
 
-For a horizontal field :math:`x(x, y)` on an :math:`N_x \times N_y` grid,
+For a horizontal field :math:`f(x, y)` on an :math:`N_x \times N_y` grid,
 the 2‑D Discrete Fourier Transform is
 
 .. math::
@@ -65,7 +65,7 @@ the 2‑D Discrete Fourier Transform is
    F(k_x, k_y) =
    \sum_{x=0}^{N_x-1}
    \sum_{y=0}^{N_y-1}
-   x(x, y)\,
+   f(x, y)\,
    e^{-i 2\pi \left( \frac{k_x x}{N_x} + \frac{k_y y}{N_y} \right)}
 
 Each pair :math:`(k_x, k_y)` corresponds to one *grid‑scale sinusoidal
@@ -102,7 +102,7 @@ space:
 
 .. math::
 
-   \sum_{x,y} x(x,y)^2
+   \sum_{x,y} f(x,y)^2
    =
    \frac{1}{N_x N_y}
    \sum_{k_x,k_y} |F(k_x, k_y)|^2
