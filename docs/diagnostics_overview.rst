@@ -184,10 +184,9 @@ covariance in the hybrid formulation. A larger static weight strengthens
 the NICAS-based static correlations and reduces the influence of the
 flow‑dependent ensemble covariance.
 
-Increasing the static weight boosts variance across all scales, with the
-largest impact at the broadest grid‑scale waves (small K). This reflects
-the stronger, smoother static correlations dominating the increment
-structure.
+Increasing the static weight enhances variance at the largest spatial
+scales (small K) while suppressing variance at smaller scales. This
+produces smoother increments dominated by broad, domain‑scale structure.
 
 .. figure:: _static/images/spectra/T_inc_ctrl_vs_hyb_weight_spectra_L75.png
    :width: 90%
@@ -195,8 +194,10 @@ structure.
    :class: left-caption
 
    CTRL vs increased static background‑covariance weight for temperature
-   increments at level 75. The increased static weight enhances large‑scale
-   variance and suppresses flow‑dependent small‑scale structure.
+   increments at level 75. The increased static weight boosts large‑scale
+   variance and damps small‑scale variance, reflecting the dominance of
+   smoother static correlations.
+
 
 
 Observation Statistics
