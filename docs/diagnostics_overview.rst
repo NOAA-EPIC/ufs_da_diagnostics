@@ -298,49 +298,66 @@ Chi‑Square Consistency Check
 ============================
 
 The chi‑square consistency diagnostic evaluates whether the innovations
-(OMB) are statistically compatible with the assumed observation‑error
-covariance. This test is widely used in data assimilation to assess
-whether the specified observation errors are under‑ or over‑estimated.
+(OMB) are broadly compatible with the assumed observation‑error
+variances. It provides a quick indication of whether the specified
+observation‑error model is reasonable.
 
-For scalar observations with departures :math:`d_{b,i}` and
-observation‑error variances :math:`\sigma_{o,i}^2`, the chi‑square
-statistic is
+For each observation i, the innovation d_b is scaled by its assumed
+observation‑error variance σ_o,i². The normalized innovation is
 
-.. math::
+    z_i = d_{b,i} / σ_{o,i}.
 
-   \chi^2 = \frac{1}{N} \sum_{i=1}^{N}
-            \frac{d_{b,i}^2}{\sigma_{o,i}^2}.
+If the observation‑error model is reasonable, the average value of z_i²
+should be close to one. This leads to the chi‑square consistency measure
 
-**Interpretation:**
+    χ² = (1/N) Σ_i (d_{b,i}² / σ_{o,i}²).
 
-- :math:`\chi^2 \approx 1`  
-  → observation errors are consistent with the actual innovation
-  statistics.
+Interpretation
+--------------
 
-- :math:`\chi^2 \gg 1`  
-  → observation errors are underestimated (innovations too large).
+- χ² ≈ 1  
+  → observation‑error variances are broadly consistent with the size of
+    the innovations.
 
-- :math:`\chi^2 \ll 1`  
-  → observation errors are overestimated (innovations too small).
+- χ² >> 1  
+  → observation‑error variances are likely too small (innovations too
+    large).
 
-In practice, the toolkit computes this diagnostic by parsing the JEDI
-log file and extracting the reported values of :math:`\mathrm{Jo}` and
-the number of assimilated observations :math:`p`, using the relation
+- χ² << 1  
+  → observation‑error variances are likely too large (innovations too
+    small).
 
-.. math::
+Practical Computation in JEDI
+-----------------------------
 
-   \chi^2 \approx \frac{\mathrm{Jo}}{p}.
+The toolkit computes this diagnostic by reading the JEDI log and using
+the reported values of Jo and the number of assimilated observations p:
 
-A value near unity indicates that the observation‑error model is
-statistically consistent with the innovations.
+    χ² ≈ Jo / p.
+
+Here Jo/p is a practical, heuristic average of the normalized innovation
+variance. It is not a formal statistical test, but it provides a quick
+sense of whether the assumed observation‑error variances are in a
+reasonable range.
+
+Channel‑Wise Normalized RMS²
+---------------------------------------
+
+The `obs_diagnostic.py (ufsda-obs-diag)` script also computes a channel‑by‑channel normalized
+RMS² value for instruments such as ATMS:
+
+    NRMS²_c = (1/N_c) Σ_{i∈c} (d_{b,i}² / σ_{o,i}²),
+
+where N_c is the number of assimilated observations in channel c.
+
+This quantity is directly comparable to Jo/p, but computed separately for
+each channel rather than over all observations. Channel‑wise NRMS² helps
+identify channels with mis-specified observation errors or
+representativeness issues.
 
 Reference
 ---------
 
-The chi‑square consistency principle is discussed in:
+- Talagrand, O. (2003). Evaluation of probabilistic prediction systems.
+  ECMWF Workshop on Diagnostics for Data Assimilation Systems.
 
-- Talagrand, O. (2003). *Evaluation of probabilistic prediction systems*.
-  In: **Workshop on Diagnostics for Data Assimilation Systems**, ECMWF.
-
-This reference provides the theoretical basis for interpreting
-:math:`\mathrm{Jo}/p` as a measure of observation‑error consistency.
