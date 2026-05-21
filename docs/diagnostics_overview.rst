@@ -347,10 +347,10 @@ variance. It is not a formal statistical test, but it provides a quick
 sense of whether the assumed observation‑error variances are in a
 reasonable range.
 
-Channel‑Wise Normalized RMS² (obs‑diag)
----------------------------------------
+Channel‑Wise Normalized RMS²
+----------------------------
 
-The `ufsda-obs-diag` script also computes a channel‑by‑channel normalized
+The `obs_diagnostic.py (ufsda-obs-diag)` script also computes a channel‑by‑channel normalized
 RMS² value for instruments such as ATMS:
 
 .. math::
