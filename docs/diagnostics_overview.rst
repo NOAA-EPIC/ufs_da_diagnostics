@@ -303,14 +303,19 @@ variances. It provides a quick indication of whether the specified
 observation‑error model is reasonable.
 
 For each observation i, the innovation d_b is scaled by its assumed
-observation‑error variance σ_o,i². The normalized innovation is
+observation‑error variance σ_{o,i}². The normalized innovation is
 
-    z_i = d_{b,i} / σ_{o,i}.
+.. math::
+
+   z_i = \frac{d_{b,i}}{\sigma_{o,i}}.
 
 If the observation‑error model is reasonable, the average value of z_i²
 should be close to one. This leads to the chi‑square consistency measure
 
-    χ² = (1/N) Σ_i (d_{b,i}² / σ_{o,i}²).
+.. math::
+
+   \chi^2 = \frac{1}{N} \sum_{i=1}^{N}
+            \frac{d_{b,i}^2}{\sigma_{o,i}^2}.
 
 Interpretation
 --------------
@@ -333,20 +338,26 @@ Practical Computation in JEDI
 The toolkit computes this diagnostic by reading the JEDI log and using
 the reported values of Jo and the number of assimilated observations p:
 
-    χ² ≈ Jo / p.
+.. math::
+
+   \chi^2 \approx \frac{J_o}{p}.
 
 Here Jo/p is a practical, heuristic average of the normalized innovation
 variance. It is not a formal statistical test, but it provides a quick
 sense of whether the assumed observation‑error variances are in a
 reasonable range.
 
-Channel‑Wise Normalized RMS²
+Channel‑Wise Normalized RMS² (obs‑diag)
 ---------------------------------------
 
-The `obs_diagnostic.py (ufsda-obs-diag)` script also computes a channel‑by‑channel normalized
+The `ufsda-obs-diag` script also computes a channel‑by‑channel normalized
 RMS² value for instruments such as ATMS:
 
-    NRMS²_c = (1/N_c) Σ_{i∈c} (d_{b,i}² / σ_{o,i}²),
+.. math::
+
+   \mathrm{NRMS}^2_c = \frac{1}{N_c}
+                       \sum_{i \in c}
+                       \frac{d_{b,i}^2}{\sigma_{o,i}^2},
 
 where N_c is the number of assimilated observations in channel c.
 
@@ -360,4 +371,3 @@ Reference
 
 - Talagrand, O. (2003). Evaluation of probabilistic prediction systems.
   ECMWF Workshop on Diagnostics for Data Assimilation Systems.
-
