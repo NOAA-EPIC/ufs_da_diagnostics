@@ -1,7 +1,7 @@
 UFS DA Diagnostics Toolkit
 ==========================
 
-A modular, extensible diagnostics framework for FV3-JEDI experiments.
+A modular, extensible diagnostics framework for UFS FV3-JEDI DA experiments.
 
 Contents
 --------
@@ -26,6 +26,7 @@ Contents
     usage_logs
     usage_plots
     usage_single_obs
+    usage_weather_events
 
 .. toctree::
     :maxdepth: 2
@@ -37,6 +38,7 @@ Contents
     api/obs
     api/log
     api/plots
+    api/weather_events_marker
 
 .. toctree::
    :maxdepth: 1

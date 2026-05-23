@@ -371,3 +371,19 @@ Reference
 
 - Talagrand, O. (2003). Evaluation of probabilistic prediction systems.
   ECMWF Workshop on Diagnostics for Data Assimilation Systems.
+
+Weather Events Diagnostics
+--------------------------
+
+The weather‑events module provides global synoptic‑scale diagnostics
+derived from FV3 ATM background fields. It identifies dynamically coherent
+features such as:
+
+* 500 hPa cyclone centers (vorticity‑based)
+* 250 hPa jet streaks (ridge detection)
+* 850 hPa baroclinic zones (temperature‑gradient magnitude)
+
+These diagnostics complement increment‑based tools by providing a
+large‑scale flow context for DA experiments.
+
+See :doc:`usage_weather_events` for usage examples.
