@@ -9,8 +9,8 @@ workflow and is used in the 2026 CADRE Data Assimilation Workshop
 tools support the hands-on sessions for the FV3-JEDI hybrid 3D-Var
 canned case (C96/C48), providing participants with a unified framework
 for analyzing background fields, increments, observation departures,
-spectral characteristics, and chi-square consistency. The same
-diagnostics are used throughout the CADRE Year-2 experiments, including
+spectral characteristics, and chi-squared consistency. The same
+diagnostics are used throughout the CADRE Year 2 experiments, including
 the ATMS, GNSSRO, ASCAT, and surface pressure components of the
 FV3-JEDI system.
 
@@ -32,7 +32,7 @@ statistics—the toolkit includes two advanced diagnostic components:
    statistics provide a detailed view of observation‑space performance
    beyond simple mean and RMS values.
 
-In addition, the toolkit supports a **chi‑square consistency check**
+In addition, the toolkit supports a **chi‑squared consistency check**
 through automated parsing of JEDI log files. This diagnostic evaluates
 whether the ratio :math:`\mathrm{Jo}/p` approaches unity, indicating
 consistency between observation errors, background errors, and the

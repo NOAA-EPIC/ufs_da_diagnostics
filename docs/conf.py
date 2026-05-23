@@ -78,9 +78,8 @@ def setup(app):
       contain autosummary blocks.
     - This avoids the builder-inited crash and the concatenation bug.
     """
-    pass
-    #app.add_css_file('custom.css')  # may also be an URL
-    #app.add_css_file('theme_overrides.css')  # may also be a URL
+    app.add_css_file('custom.css')  # may also be an URL
+    app.add_css_file('theme_overrides.css')  # may also be a URL
 
 latex_engine = 'xelatex'
 
