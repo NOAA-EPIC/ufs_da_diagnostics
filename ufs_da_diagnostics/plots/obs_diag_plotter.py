@@ -131,9 +131,6 @@ class ObsDiagPlotter:
 
         # ============================================================
         # Unified output directory resolution
-        # Preferred: output_dir
-        # Legacy fallback: outdir
-        # Default: ./plot-outputs-obs
         # ============================================================
         global_outdir = (
             self.config.get("output_dir") or
@@ -146,10 +143,8 @@ class ObsDiagPlotter:
             otype = obs_cfg["type"]
             var = obs_cfg["variable"]
 
-            # diag path already resolved by prefix_root logic in __init__
             diag = obs_cfg.get("diag", obs_cfg.get("file"))
 
-            # Per-observation override (same unified logic)
             outdir = (
                 obs_cfg.get("output_dir") or
                 obs_cfg.get("outdir") or
@@ -185,6 +180,11 @@ class ObsDiagPlotter:
                         print(f"[INFO] Generating ATMS latitude-binned diagnostics for {label}")
                         plot_latbins_atms(f, var, label, outdir)
 
+                    # ⭐ NEW: Scatter
+                    if diags_cfg.get("scatter", False):
+                        print(f"[INFO] Generating ATMS scatter for {label}")
+                        self._plot_scatter(f, var, label, outdir)
+
                 # ============================================================
                 # Scalar
                 # ============================================================
@@ -192,12 +192,22 @@ class ObsDiagPlotter:
                     if diags_cfg.get("hist", False):
                         self._plot_scalar_hist(f, var, label, outdir)
 
+                    # ⭐ NEW: Scatter
+                    if diags_cfg.get("scatter", False):
+                        print(f"[INFO] Generating scalar scatter for {label}")
+                        self._plot_scatter(f, var, label, outdir)
+
                 # ============================================================
-                # Vector (e.g., winds)
+                # Vector (winds)
                 # ============================================================
                 elif otype == "vector":
                     if diags_cfg.get("hist", False):
                         self._plot_vector_hist(f, label, outdir)
+
+                    # ⭐ NEW: Scatter (use windSpeed)
+                    if diags_cfg.get("scatter", False):
+                        print(f"[INFO] Generating vector scatter for {label}")
+                        self._plot_scatter(f, "windSpeed", label, outdir)
 
                 else:
                     print(f"[WARN] Unknown type {otype} for {label}")
@@ -310,3 +320,46 @@ class ObsDiagPlotter:
             os.path.join(outdir, f"{label.lower()}_v_hist.png"),
             qc_label="QC1",
         )
+
+
+    # ============================================================
+    # ⭐ NEW: Scatter Plot (ObsValue vs OMB)
+    # ============================================================
+
+    def _plot_scatter(self, f, varname, label, outdir):
+        """Scatter plot of ObsValue vs OMB for assimilated obs only."""
+        obs = load_obsvalue(f, varname)
+        omb = load_omb(f, varname)
+        qc  = load_qc_universal(f, varname)
+
+        if obs is None or omb is None:
+            print(f"[SKIP] {label}: missing ObsValue or OMB")
+            return
+
+        # Assimilated-only mask
+        valid = (qc == 0) & np.isfinite(obs) & np.isfinite(omb)
+        if np.sum(valid) == 0:
+            print(f"[SKIP] {label}: no assimilated points for scatter")
+            return
+
+        obs_valid = obs[valid]
+        omb_valid = omb[valid]
+        count = obs_valid.size
+
+        # Output directory
+        scatter_dir = os.path.join(outdir, "scatter_plots")
+        os.makedirs(scatter_dir, exist_ok=True)
+
+        # Plot
+        plt.figure(figsize=(6, 6))
+        plt.scatter(obs_valid, omb_valid, s=2, alpha=0.4)
+        plt.xlabel("ObsValue")
+        plt.ylabel("OMB")
+        plt.title(f"{label} (assimilated, count={count})")
+        plt.grid(True)
+
+        outfile = os.path.join(scatter_dir, f"{label.lower()}_omb_scatter.png")
+        plt.savefig(outfile, dpi=150, bbox_inches="tight")
+        plt.close()
+
+        print(f"[SAVED] {outfile}")
