@@ -393,24 +393,34 @@ class ObsDiagPlotter:
             return
 
         # ============================================================
+        # Collapse ATMS (nobs, nchannels) → (nobs,)
+        # ============================================================
+        if omb.ndim == 2:
+            # Mean OMB across channels
+            omb_1d = np.nanmean(omb, axis=1)
+
+            # Assimilated if ANY channel is assimilated
+            qc_1d = np.any(qc == 0, axis=1).astype(int)
+        else:
+            omb_1d = omb
+            qc_1d = qc
+
+        # ============================================================
         # Load latitude / longitude (MetaData-aware)
         # ============================================================
         lat = lon = None
 
-        # JEDI-style MetaData group
         if "MetaData" in f.groups:
             g = f.groups["MetaData"]
             if "latitude" in g.variables and "longitude" in g.variables:
                 lat = g.variables["latitude"][:]
                 lon = g.variables["longitude"][:]
 
-        # Fallback: top-level variables
         if lat is None or lon is None:
             if "latitude" in f.variables and "longitude" in f.variables:
                 lat = f.variables["latitude"][:]
                 lon = f.variables["longitude"][:]
 
-        # If still missing, skip
         if lat is None or lon is None:
             print(f"[SKIP] {label}: no latitude/longitude in file")
             return
@@ -418,14 +428,14 @@ class ObsDiagPlotter:
         # ============================================================
         # Assimilated-only mask
         # ============================================================
-        valid = (qc == 0) & np.isfinite(omb) & np.isfinite(lat) & np.isfinite(lon)
+        valid = (qc_1d == 0) & np.isfinite(omb_1d) & np.isfinite(lat) & np.isfinite(lon)
         if np.sum(valid) == 0:
             print(f"[SKIP] {label}: no assimilated points for map")
             return
 
         lat = lat[valid]
         lon = lon[valid]
-        omb = omb[valid]
+        omb = omb_1d[valid]
         count = lat.size
 
         # ============================================================
