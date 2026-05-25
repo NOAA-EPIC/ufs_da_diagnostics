@@ -383,6 +383,7 @@ class ObsDiagPlotter:
         """Global scatter map of assimilated obs colored by OMB."""
         import matplotlib.pyplot as plt
 
+        # Load ObsValue, OMB, QC
         obs = load_obsvalue(f, varname)
         omb = load_omb(f, varname)
         qc  = load_qc_universal(f, varname)
@@ -391,15 +392,32 @@ class ObsDiagPlotter:
             print(f"[SKIP] {label}: missing ObsValue or OMB")
             return
 
-        # Load lat/lon
-        if "latitude" not in f.variables or "longitude" not in f.variables:
+        # ============================================================
+        # Load latitude / longitude (MetaData-aware)
+        # ============================================================
+        lat = lon = None
+
+        # JEDI-style MetaData group
+        if "MetaData" in f.groups:
+            g = f.groups["MetaData"]
+            if "latitude" in g.variables and "longitude" in g.variables:
+                lat = g.variables["latitude"][:]
+                lon = g.variables["longitude"][:]
+
+        # Fallback: top-level variables
+        if lat is None or lon is None:
+            if "latitude" in f.variables and "longitude" in f.variables:
+                lat = f.variables["latitude"][:]
+                lon = f.variables["longitude"][:]
+
+        # If still missing, skip
+        if lat is None or lon is None:
             print(f"[SKIP] {label}: no latitude/longitude in file")
             return
 
-        lat = f.variables["latitude"][:]
-        lon = f.variables["longitude"][:]
-
+        # ============================================================
         # Assimilated-only mask
+        # ============================================================
         valid = (qc == 0) & np.isfinite(omb) & np.isfinite(lat) & np.isfinite(lon)
         if np.sum(valid) == 0:
             print(f"[SKIP] {label}: no assimilated points for map")
@@ -410,11 +428,15 @@ class ObsDiagPlotter:
         omb = omb[valid]
         count = lat.size
 
+        # ============================================================
         # Output directory
+        # ============================================================
         map_dir = os.path.join(outdir, "scatter_maps")
         os.makedirs(map_dir, exist_ok=True)
 
+        # ============================================================
         # Plot
+        # ============================================================
         plt.figure(figsize=(10, 5))
         plt.scatter(lon, lat, c=omb, s=6, cmap="coolwarm", alpha=0.8)
         plt.colorbar(label="OMB")
@@ -431,4 +453,3 @@ class ObsDiagPlotter:
         plt.close()
 
         print(f"[SAVED] {outfile}")
-
