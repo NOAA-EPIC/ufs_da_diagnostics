@@ -185,6 +185,10 @@ class ObsDiagPlotter:
                         print(f"[INFO] Generating ATMS scatter for {label}")
                         self._plot_scatter(f, var, label, outdir)
 
+                    if diags_cfg.get("scatter_map", False):
+                        print(f"[INFO] Generating ATMS scatter map for {label}")
+                        self._plot_scatter_map(f, var, label, outdir)
+
                 # ============================================================
                 # Scalar
                 # ============================================================
@@ -196,6 +200,10 @@ class ObsDiagPlotter:
                     if diags_cfg.get("scatter", False):
                         print(f"[INFO] Generating scalar scatter for {label}")
                         self._plot_scatter(f, var, label, outdir)
+
+                    if diags_cfg.get("scatter_map", False):
+                        print(f"[INFO] Generating scalar scatter map for {label}")
+                        self._plot_scatter_map(f, var, label, outdir)
 
                 # ============================================================
                 # Vector (winds)
@@ -209,6 +217,9 @@ class ObsDiagPlotter:
                         print(f"[INFO] Generating vector scatter for {label}")
                         self._plot_scatter(f, "windSpeed", label, outdir)
 
+                    if diags_cfg.get("scatter_map", False):
+                        print(f"[INFO] Generating vector scatter map for {label}")
+                        self._plot_scatter_map(f, "windSpeed", label, outdir)
                 else:
                     print(f"[WARN] Unknown type {otype} for {label}")
 
