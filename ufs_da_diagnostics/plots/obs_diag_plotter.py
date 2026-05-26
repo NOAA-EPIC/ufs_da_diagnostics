@@ -130,7 +130,8 @@ class ObsDiagPlotter:
                     if diags_cfg.get("scatter", False):
                         self._plot_scatter(f, var, label, outdir)
                     if diags_cfg.get("scatter_map", False):
-                        self._plot_scatter_map(f, var, label, outdir)
+                        selected_chans = diags_cfg.get("scatter_map_channels", None)
+                        self._plot_scatter_map(f, var, label, outdir, selected_chans)
 
                 # ---------------- Scalar ----------------
                 elif otype == "scalar":
@@ -271,16 +272,11 @@ class ObsDiagPlotter:
                     dpi=150, bbox_inches="tight")
         plt.close()
     # ============================================================
-    # Scatter Map (scalar/ATMS)
+    # Scatter Map (scalar / ATMS per-channel)
     # ============================================================
 
-    # ============================================================
-    # Scatter Map (scalar/ATMS)
-    # ============================================================
-
-    def _plot_scatter_map(self, f, varname, label, outdir):
+    def _plot_scatter_map(self, f, varname, label, outdir, selected_chans=None):
         """Global scatter map for scalar and ATMS observations."""
-
         obs = load_obsvalue(f, varname)
         omb = load_omb(f, varname)
         qc  = load_qc_universal(f, varname)
@@ -291,17 +287,112 @@ class ObsDiagPlotter:
         # Mask fill values
         omb = np.where(omb > 1e10, np.nan, omb)
 
-        # --- ATMS collapse with empty-row protection ---
+        # ============================================================
+        # ATMS CASE — per-channel scatter maps
+        # ============================================================
         if omb.ndim == 2:
-            valid_rows = np.any(np.isfinite(omb), axis=1)
-            omb_1d = np.full(omb.shape[0], np.nan)
-            omb_1d[valid_rows] = np.nanmean(omb[valid_rows, :], axis=1)
-            qc_1d = np.any(qc == 0, axis=1)
-        else:
-            omb_1d = omb
-            qc_1d = (qc == 0)
 
-        # --- Load lat/lon ---
+            nchans = omb.shape[1]
+
+            # Debug printout
+            print(f"[DEBUG] Selected ATMS channels from YAML: {selected_chans}")
+
+            # Apply YAML channel selection
+            if selected_chans is not None:
+                chan_list = [ch - 1 for ch in selected_chans]   # YAML is 1‑based
+            else:
+                chan_list = list(range(nchans))
+
+            # Loop over selected channels ONLY
+            for ch in chan_list:
+
+                omb_ch = omb[:, ch]
+                qc_ch  = qc[:, ch]
+
+                # Valid mask
+                valid = (qc_ch == 0) & np.isfinite(omb_ch)
+                if np.sum(valid) == 0:
+                    continue
+
+                omb_1d = omb_ch[valid]
+
+                # Load lat/lon
+                lat = lon = None
+                if "MetaData" in f.groups:
+                    g = f.groups["MetaData"]
+                    lat = g["latitude"][:] if "latitude" in g.variables else None
+                    lon = g["longitude"][:] if "longitude" in g.variables else None
+
+                if lat is None or lon is None:
+                    return
+
+                if lat.ndim == 2:
+                    lat = lat[:, 0]
+                if lon.ndim == 2:
+                    lon = lon[:, 0]
+
+                lat = lat[valid]
+                lon = lon[valid]
+                N = len(lat)
+
+                # Dot size + color range
+                s = min(6.0, max(1.5, 30000 / N))
+                alpha = 0.7
+                vmin, vmax = np.percentile(omb_1d, [2, 98])
+
+                # Output directory
+                map_dir = os.path.join(outdir, "scatter_maps")
+                os.makedirs(map_dir, exist_ok=True)
+
+                # Plot
+                fig = plt.figure(figsize=(12, 6))
+                ax = plt.axes(projection=ccrs.PlateCarree())
+                ax.set_global()
+                ax.coastlines()
+                ax.add_feature(cfeature.BORDERS, linewidth=0.3)
+
+                gl = ax.gridlines(draw_labels=True, linewidth=0.3)
+                gl.top_labels = False
+                gl.right_labels = False
+
+                sc = ax.scatter(
+                    lon, lat,
+                    c=omb_1d,
+                    s=s,
+                    alpha=alpha,
+                    cmap="coolwarm",
+                    linewidths=0,
+                    vmin=vmin, vmax=vmax,
+                    transform=ccrs.PlateCarree()
+                )
+
+                # Bottom colorbar
+                cbar = plt.colorbar(
+                    sc,
+                    ax=ax,
+                    orientation="horizontal",
+                    pad=0.06,
+                    shrink=0.4
+                )
+                cbar.set_label("OMB")
+
+                plt.title(f"{label} Ch {ch+1:02d} (assimilated, count={N})")
+
+                outfile = os.path.join(map_dir, f"{label.lower()}_ch{ch+1:02d}_omb_map.png")
+                plt.savefig(outfile, dpi=150, bbox_inches="tight")
+                plt.close()
+
+                print(f"[SAVED] {outfile}")
+
+            return  # ATMS case fully handled
+
+        # ============================================================
+        # SCALAR CASE — unchanged
+        # ============================================================
+
+        omb_1d = omb
+        qc_1d = (qc == 0)
+
         lat = lon = None
         if "MetaData" in f.groups:
             g = f.groups["MetaData"]
@@ -311,13 +402,11 @@ class ObsDiagPlotter:
         if lat is None or lon is None:
             return
 
-        # GNSSRO-style flatten
         if lat.ndim == 2:
             lat = lat[:, 0]
         if lon.ndim == 2:
             lon = lon[:, 0]
 
-        # Valid mask
         valid = qc_1d & np.isfinite(omb_1d) & np.isfinite(lat) & np.isfinite(lon)
         if np.sum(valid) == 0:
             return
@@ -327,7 +416,7 @@ class ObsDiagPlotter:
         omb = omb_1d[valid]
         N = len(lat)
 
-        # --- Dot size + color range ---
+        # Dot size + color range
         if label.upper() == "GNSSRO":
             s = min(6.0, max(1.5, 80000 / N))
             alpha = 0.30
@@ -341,7 +430,7 @@ class ObsDiagPlotter:
         map_dir = os.path.join(outdir, "scatter_maps")
         os.makedirs(map_dir, exist_ok=True)
 
-        # --- Plot ---
+        # Plot
         fig = plt.figure(figsize=(12, 6))
         ax = plt.axes(projection=ccrs.PlateCarree())
         ax.set_global()
@@ -363,7 +452,7 @@ class ObsDiagPlotter:
             transform=ccrs.PlateCarree()
         )
 
-        # Bottom, smaller colorbar
+        # Bottom colorbar
         cbar = plt.colorbar(
             sc,
             ax=ax,
@@ -373,7 +462,7 @@ class ObsDiagPlotter:
         )
         cbar.set_label("OMB")
 
-        # --- Scientific notation for GNSSRO ---
+        # Scientific notation for GNSSRO
         if label.upper() == "GNSSRO":
             from matplotlib.ticker import ScalarFormatter
             fmt = ScalarFormatter(useMathText=True)
@@ -388,7 +477,7 @@ class ObsDiagPlotter:
 
         print(f"[SAVED] {outfile}")
 
-
+        
     # ============================================================
     # Scatter Map (vector winds)
     # ============================================================
