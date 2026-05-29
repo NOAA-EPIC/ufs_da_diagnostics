@@ -56,7 +56,7 @@ including screenshots and troubleshooting notes, see
 - :ref:`Appendix B — Slurm Basics <appendix_slurm_basics>`
 - :ref:`Appendix C — Filesystem and Modules <appendix_filesystem_modules>`
 
-Clone the CADRE-DA-training Repository into Your EPIC Workspace
+Clone the CADRE-DA-training Repository
 ---------------------------------------------------------------
 
 On Hercules, each user should clone the training repository inside their
@@ -83,7 +83,7 @@ Navigate to the ``year2_cases`` subdirectory in the repository and display its c
     cd CADRE-DA-training/year2_cases
     ls
 
-This directory includes the job card script (``run_3dvar_hercules.sh``) and input YAML files for the six experiments. 
+This directory includes the job card script (``run_3dvar_hercules.sh``) and input YAML files for the six experiments and additional single_obs experiments. 
 
 .. code-block:: bash
 
@@ -91,44 +91,59 @@ This directory includes the job card script (``run_3dvar_hercules.sh``) and inpu
    ├── build_bundle.sh
    ├── build_gdas.sh
    ├── run_3dvar_hercules.sh
-   └── input_yaml
-       ├── Day1
-       │   ├── jedi_3dvar_fv3_2024022400.yaml
-       │   └── jedi_3dvar_fv3inc_2024022400.yaml
-       ├── Day2
-       │   ├── exp_hyb_weight
-       │   │   ├── jedi_3dvar_fv3_2024022400.yaml
-       │   │   └── jedi_3dvar_fv3inc_2024022400.yaml
-       │   └── exp_nicas_scale
-       │       ├── jedi_3dvar_fv3_2024022400.yaml
-       │       └── jedi_3dvar_fv3inc_2024022400.yaml
-       └── Day3
-           ├── exp_gaussian_thinning
-           │   ├── jedi_3dvar_fv3_2024022400.yaml
-           │   └── jedi_3dvar_fv3inc_2024022400.yaml
-           ├── exp_obs_error
-           │   ├── jedi_3dvar_fv3_2024022400.yaml
-           │   └── jedi_3dvar_fv3inc_2024022400.yaml
-           └── exp_obs_options
-               ├── jedi_3dvar_fv3_2024022400.yaml
-               ├── jedi_3dvar_fv3_2024022400_3obs.yaml
-               ├── jedi_3dvar_fv3_2024022400_4obs.yaml
-               ├── jedi_3dvar_fv3_template.yaml
-               ├── jedi_3dvar_fv3inc_2024022400.yaml
-               ├── obs_ascat.yaml
-               ├── obs_atms_n20.yaml
-               ├── obs_conventional_ps.yaml
-               ├── obs_gnssro_cosmic2.yaml
-               └── obs_goes16.yaml
+   ├── input_yaml
+   │   ├── Day1
+   │   │   ├── jedi_3dvar_fv3_2024022400.yaml
+   │   │   └── jedi_3dvar_fv3inc_2024022400.yaml
+   │   ├── Day2
+   │   │   ├── exp_hyb_weight
+   │   │   │   ├── jedi_3dvar_fv3_2024022400.yaml
+   │   │   │   └── jedi_3dvar_fv3inc_2024022400.yaml
+   │   │   └── exp_nicas_scale
+   │   │       ├── jedi_3dvar_fv3_2024022400.yaml
+   │   │       └── jedi_3dvar_fv3inc_2024022400.yaml
+   │   ├── Day3
+   │   │   ├── exp_atm_thinning
+   │   │   │   ├── jedi_3dvar_fv3_2024022400.yaml
+   │   │   │   └── jedi_3dvar_fv3inc_2024022400.yaml
+   │   │   ├── exp_atms_err
+   │   │   │   ├── jedi_3dvar_fv3_2024022400.yaml
+   │   │   │   └── jedi_3dvar_fv3inc_2024022400.yaml
+   │   │   └── exp_no_atms
+   │   │       ├── jedi_3dvar_fv3_2024022400.yaml
+   │   │       └── jedi_3dvar_fv3inc_2024022400.yaml
+   │   └── single_obs
+   │       ├── atms_err
+   │       │   ├── jedi_3dvar_fv3_2024022400.yaml
+   │       │   └── jedi_3dvar_fv3inc_2024022400.yaml
+   │       ├── ctrl
+   │       │   ├── jedi_3dvar_fv3_2024022400.yaml
+   │       │   └── jedi_3dvar_fv3inc_2024022400.yaml
+   │       ├── hyb_weight
+   │       │   ├── jedi_3dvar_fv3_2024022400.yaml
+   │       │   └── jedi_3dvar_fv3inc_2024022400.yaml
+   │       └── nicas_length_scale
+   │           ├── jedi_3dvar_fv3_2024022400.yaml
+   │           └── jedi_3dvar_fv3inc_2024022400.yaml
+   └── year2_aws_setup
+       ├── build_da_cluster.pkr.hcl
+       ├── da-cluster-start-script.sh
+       └── da_hpc.yaml
 
 It also includes JEDI and GDAS build scripts; however, the FV3-JEDI and GDASApp executables are prebuilt on Hercules.
 
-Running the CADRE 2026 Experiments
-----------------------------------
+Each training experiment for Days 1-3 includes two YAML configuration files: 
 
-The training experiments for Days 1-3 are executed using the
-job card script located in the ``year2_cases`` directory. Copy the YAML configuration files for each day into your working
-directory. For example, to copy the Day 1 YAMLs:
+    #. ``jedi_3dvar_fv3_2024022400.yaml`` -- The FV3-JEDI input YAML
+    #. ``jedi_3dvar_fv3inc_2024022400.yaml`` -- The GDASApp UFS increment-handling YAML 
+
+Day 1: Running the CADRE 2026 Control Experiment & Diagnostics
+----------------------------------------------------------------
+
+Running the Experiment
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+To run the Day 1 control experiment, copy the Day 1 YAMLs to the ``year2_cases`` directory:
 
 .. code-block:: bash
 
@@ -141,9 +156,7 @@ Each experiment contains two YAMLs:
 
 Submit the job card using SLURM:
 
-.. code-block:: bash
-
-    sbatch run_3dvar_hercules.sh
+.. include:: code-snippets/submit-job.rst
 
 Running this command will print a job ID, which should be retained for future reference. For example:
 
@@ -153,12 +166,16 @@ Running this command will print a job ID, which should be retained for future re
 
 Monitor job progress:
 
+.. include:: code-snippets/monitor-job.rst
+
+After the experiment has finished running, it can be helpful to rename the directory to something more descriptive. For example:
+
 .. code-block:: bash
 
-    squeue -u $USER
+   mv cadre26.8939236 cadre26.control
 
 Prebuilt Experiment Outputs
----------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 All prebuilt CADRE 2026 experiment outputs are available at:
 
@@ -170,15 +187,16 @@ Example directory listing:
 
 .. code-block:: text
 
-    cadre26-diagnostics                      cadre26.8487557.day3_thinning
-    cadre26.8434573.day1                     cadre26.8487565.day3_obs_error
-    cadre26.8487509.day2_hyb_wght            cadre26.8697363_atms-err-08
-    cadre26.8487556.day2_nicas               cadre26.8697429_atms-err-03
-    cadre26.8487556.day2_nicas-length-scale  grid
+   cadre26.8895896.day1_ctrl                 cadre26.8900895.atms_err
+   cadre26.8895942.day2_hyb_weight           grid
+   cadre26.8896455.day2_nicas_length_scale   hercules.anaconda
+   cadre26.8896479.day3_atms_thinning        input_data
+   cadre26.8897035.day3_atms_err08           single_obs
+   cadre26.8900653.day3_no_atms
 
 
 Running Diagnostics After Jobs Complete
----------------------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Once the FV3-JEDI jobs finish, the UFS DA Diagnostics toolkit can be
 applied to the output files.
@@ -193,23 +211,18 @@ The diagnostics toolkit is installed at:
     /work/noaa/epic/jongkim/ufs_da_diagnostics
 
 Activate the Environment
-^^^^^^^^^^^^^^^^^^^^^^^^^^
+``````````````````````````
 
 To run the diagnostics package, first activate the preconfigured environment:
 
-.. code-block:: bash
-
-    export MPLBACKEND=Agg
-    source /work/noaa/epic/jongkim/hercules.anaconda
+.. include:: code-snippets/activate-env.rst
 
 Prepare Diagnostics YAML Files
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+````````````````````````````````
 
 Optionally, save your epic-explorer directory in an environment variable:
 
-.. code-block:: bash
-
-   export HOME=/work2/noaa/epic-explorer/$USER
+.. include:: code-snippets/set-HOME.rst
 
 If you choose not to perform this step, you will need to type out the full path to your directory wherever it says ``$HOME``. 
 
@@ -246,7 +259,7 @@ Typical fields to update inside each YAML include:
 * ``diag``, ``prefix``, ``outdir``, or ``output_dir``  
 
 Day 1: Control Experiment Diagnostics
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+```````````````````````````````````````
 
 Navigate to the diagnostic YAMLs directory for Day 1: 
 
@@ -257,7 +270,7 @@ Navigate to the diagnostic YAMLs directory for Day 1:
 Update data paths in each YAML to point to the location of your experiment output. 
 
 Increment Plots
-`````````````````
+"""""""""""""""""
 
 For the increment plots, open ``increment_maps.yaml``, and change the paths to point to your experiment directory output: 
 
@@ -294,14 +307,14 @@ Users may also choose to add or remove variables and levels, although this has n
 
 .. COMMENT: Check on above statement^
 
-Then, run: 
+Then, run the following command to generate the plots: 
 
 .. code-block:: bash
    
     ufsda-inc-maps --yaml increment_maps.yaml
 
 Observation Diagnostics
-`````````````````````````
+"""""""""""""""""""""""""
 
 For the observation diagnostics plots, open ``obs_diag.yaml``. Change the ``output_dir`` path to point to a location where the plots will be stored, and change ``prefix_root`` to point to your experiment directory output:
 
@@ -321,23 +334,16 @@ For the observation diagnostics plots, open ``obs_diag.yaml``. Change the ``outp
        type: atms
        variable: brightnessTemperature
        file: "diag.atms_n20_2024022400.nc"
-       diagnostics:
-         hist: true
-         stats: true
-         extended: true
-         scanpos: true
-         latbins: true
-  
      ...
 
-Then run:
+Then, run the following command to generate the plots: 
 
 .. code-block:: bash
    
     ufsda-obs-diag --yaml obs_diag.yaml
 
 Power Spectra Analysis Plots
-``````````````````````````````
+"""""""""""""""""""""""""""""
 
 For the power spectra analysis plots, adjust the file locations to point to your data. Users will need to change ``<username>`` to point to their actual username and also adjust the job ID: 
 
@@ -368,7 +374,7 @@ For the power spectra analysis plots, adjust the file locations to point to your
        - 75
      output_dir: "/work2/noaa/epic-explorer/<username>/CADRE-DA-training/year2_cases/exp_case/cadre26.8939236/plots/spectra-bkg-inc"
 
-Then run: 
+Then, run the following command to generate the plots: 
 
 .. code-block:: bash
    
@@ -377,39 +383,228 @@ Then run:
 JEDI Logs
 ```````````
 
-To produce 
+To produce a JEDI DA summary diagnostics report, run the ``ufsda-jedi-log``
 
 .. code-block:: bash
    
-    ufsda-jedi-log /work2/noaa/epic-explorer/gpetro/CADRE-DA-training/year2_cases/exp_case/cadre26.8939236/OUTPUT.fv3jedi --output day1_log_report.txt
+    ufsda-jedi-log $HOME/CADRE-DA-training/year2_cases/exp_case/cadre26.8939236/OUTPUT.fv3jedi --output $HOME/CADRE-DA-training/year2_cases/exp_case/cadre26.8939236/day1_log_report.txt
+
 
 Day 2: Background Error Experiments (Hybrid Weight, NICAS)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+------------------------------------------------------------
+
+The procedure for running Day 2 experiments and diagnostics is the same as for Day 1. Optionally, set your home directory to shorten the paths you type out: 
+
+.. include:: code-snippets/set-HOME.rst
+
+Then, navigate to the ``year2_cases`` directory and copy the experiment YAML file to the ``input_yaml`` directory: 
 
 .. code-block:: bash
 
-    ufsda-spectra-ana-inc --yaml spectra_day2.yaml
-    ufsda-inc-maps --yaml increment_maps_day2.yaml
-    ufsda-obs-diag --yaml obs_diag_day2.yaml
-    ufsda-jedi-log /work2/noaa/epic/CADRE2026/cadre26.8487509.day2_hyb_wght/OUTPUT.fv3jedi \
-        --output day2_log_report.txt
+   cd $HOME/CADRE-DA-training/year2_cases
+   cp ./input_yaml/Day2/<exp_name>/*.yaml ./input_yaml
+   sbatch run_3dvar_hercules.sh
+
+where ``<exp_name>`` is either ``exp_hyb_weight`` or ``exp_nicas_scale``. 
+
+Monitor your results: 
+
+.. include:: code-snippets/monitor-job.rst
+
+If desired, rename your experiment directory when the experiment finishes running. For example: 
+
+.. code-block:: bash
+
+   cd exp_case
+   mv cadre26.8972359 cadre26.hyb_weight
+   # OR
+   mv cadre26.8972360 cadre26.nicas_scale
+
+To run the diagnostics package, first activate the preconfigured environment:
+
+.. include:: code-snippets/activate-env.rst
+
+Then, navigate to the diagnostics YAMLs, and adjust the data paths in each YAML to match the data input and output locations for your experiment. 
+
+.. code-block:: bash
+
+   cd $HOME/CADRE-DA-training/diagnostic/yamls/day2_<exp_name>
+
+where ``<exp_name>`` is ``hyb_weight`` or ``nicas_length_scale``.
+
+For example, to generate the hybrid weight increment plots, change the experiment paths in ``increment_maps.yaml`` to point to your experiment output: 
+
+.. code-block:: yaml
+   
+   ...
+   experiments:
+     - name: ctrl
+       prefix: "/work2/noaa/epic-explorer/<username>/CADRE-DA-training/year2_cases/exp_case/cadre26.control/output/ufsda.t00z.atminc.cubed_sphere_grid.tile"
+
+     - name: atms-thining
+       prefix: "/work2/noaa/epic-explorer/<username>/CADRE-DA-training/year2_cases/exp_case/cadre26.<exp_name>/output/ufsda.t00z.atminc.cubed_sphere_grid.tile"
+
+   grid:
+     prefix: "/work2/noaa/epic-explorer/<username>/CADRE-DA-training/year2_cases/exp_case/cadre26.<exp_name>/grid/C96_grid.tile"
+
+   output_dir: "./day2_<exp_name>/inc_plots"
+   ...
+
+Then, to generate the observation diagnostics plots, update the ``obs_diag.yaml`` file: 
+
+.. code-block:: yaml
+
+   ...
+   # Shared prefix for all diag files
+   prefix_root: "/work2/noaa/epic-explorer/<username>/CADRE-DA-training/year2_cases/exp_case/cadre26.<exp_name>/output"
+
+   observations:
+
+     # ------------------------------------------------------------
+     # ATMS Radiances
+     # ------------------------------------------------------------
+     - label: ATMS
+       type: atms
+       variable: brightnessTemperature
+       file: "diag.atms_n20_2024022400.nc"
+       ...
+
+To generate the power spectra analysis plots: 
+
+.. code-block:: yaml
+
+   experiments:
+     - name: ctrl
+       prefix: "/work2/noaa/epic-explorer/<username>/CADRE-DA-training/year2_cases/exp_case/cadre26.control/output/ufsda.t00z.atminc.cubed_sphere_grid.tile"
+
+     - name: atms-thining
+       prefix: "/work2/noaa/epic-explorer/<username>/CADRE-DA-training/year2_cases/exp_case/cadre26.<exp_name>/output/ufsda.t00z.atminc.cubed_sphere_grid.tile"
+
+   grid:
+     prefix: "/work2/noaa/epic-explorer/<username>/CADRE-DA-training/year2_cases/exp_case/cadre26.<exp_name>/grid/C96_grid.tile"
+
+
+Run the diagnostics package to generate the plots for the experiment:
+
+.. code-block:: bash
+
+    ufsda-spectra-ana-inc --yaml spectra_ana_inc.yaml
+    ufsda-inc-maps --yaml increment_maps.yaml
+    ufsda-obs-diag --yaml obs_diag.yaml
+    ufsda-jedi-log /work2/noaa/epic-explorer/<username>/CADRE-DA-training/year2_cases/exp_case/cadre26.<exp_name>/OUTPUT.fv3jedi \
+        --output <exp_name>_log_report.txt
 
 Day 3: Observation Experiments (Thinning, Obs Error)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-----------------------------------------------------
+
+The procedure for running Day 3 experiments and diagnostics is the same as for Day 1. Optionally, set your home directory to shorten the paths you type out: 
+
+.. include:: code-snippets/set-HOME.rst
+
+Then, navigate to the ``year2_cases`` directory and copy the experiment YAML file to the ``input_yaml`` directory: 
 
 .. code-block:: bash
 
-    ufsda-spectra-ana-inc --yaml spectra_day3.yaml
-    ufsda-inc-maps --yaml increment_maps_day3.yaml
-    ufsda-obs-diag --yaml obs_diag_day3.yaml
-    ufsda-jedi-log /work2/noaa/epic/CADRE2026/cadre26.8487565.day3_obs_error/OUTPUT.fv3jedi \
+   cd $HOME/CADRE-DA-training/year2_cases
+   cp ./input_yaml/Day3/<exp_name>/*.yaml ./input_yaml
+   sbatch run_3dvar_hercules.sh
+
+where ``<exp_name>`` is ``exp_atm_thinning``, ``exp_atms_err``, or ``exp_no_atms``. 
+
+Monitor your results: 
+
+.. include:: code-snippets/monitor-job.rst
+
+If desired, rename your experiment directory when the experiment finishes running. For example: 
+
+.. code-block:: bash
+
+   cd exp_case
+   mv cadre26.8978018 cadre26.atm_thinning
+   # OR
+   mv cadre26.8978027 cadre26.atms_err
+   # OR
+   mv cadre26.8978028 cadre26.no_atms
+
+To run the diagnostics package, first activate the preconfigured environment:
+
+.. include:: code-snippets/activate-env.rst
+
+Then, navigate to the diagnostics YAMLs, and adjust the data paths in each YAML to match the data input and output locations for your experiment. 
+
+.. code-block:: bash
+
+   cd $HOME/CADRE-DA-training/diagnostic/yamls/day3_<exp_name>
+
+where ``<exp_name>`` is ``atm_thinning``, ``atms_err``, or ``no_atms``. 
+
+For example, to generate the hybrid weight increment plots, change the experiment paths in ``increment_maps.yaml`` to point to your experiment output: 
+
+.. code-block:: yaml
+   
+   ...
+   experiments:
+     - name: ctrl
+       prefix: "/work2/noaa/epic-explorer/<username>/CADRE-DA-training/year2_cases/exp_case/cadre26.control/output/ufsda.t00z.atminc.cubed_sphere_grid.tile"
+
+     - name: atms-thining
+       prefix: "/work2/noaa/epic-explorer/<username>/CADRE-DA-training/year2_cases/exp_case/cadre26.<exp_name>/output/ufsda.t00z.atminc.cubed_sphere_grid.tile"
+
+   grid:
+     prefix: "/work2/noaa/epic-explorer/<username>/CADRE-DA-training/year2_cases/exp_case/cadre26.<exp_name>/grid/C96_grid.tile"
+
+   output_dir: "./day3_<exp_name>/inc_plots"
+   ...
+
+Then, to generate the observation diagnostics plots, update the ``obs_diag.yaml`` file: 
+
+.. code-block:: yaml
+
+   ...
+   # Shared prefix for all diag files
+   prefix_root: "/work2/noaa/epic-explorer/<username>/CADRE-DA-training/year2_cases/exp_case/cadre26.<exp_name>/output"
+
+   observations:
+
+     # ------------------------------------------------------------
+     # ATMS Radiances
+     # ------------------------------------------------------------
+     - label: ATMS
+       type: atms
+       variable: brightnessTemperature
+       file: "diag.atms_n20_2024022400.nc"
+       ...
+
+To generate the power spectra analysis plots: 
+
+.. code-block:: yaml
+
+   experiments:
+     - name: ctrl
+       prefix: "/work2/noaa/epic-explorer/<username>/CADRE-DA-training/year2_cases/exp_case/cadre26.control/output/ufsda.t00z.atminc.cubed_sphere_grid.tile"
+
+     - name: atms-thining
+       prefix: "/work2/noaa/epic-explorer/<username>/CADRE-DA-training/year2_cases/exp_case/cadre26.<exp_name>/output/ufsda.t00z.atminc.cubed_sphere_grid.tile"
+
+   grid:
+     prefix: "/work2/noaa/epic-explorer/<username>/CADRE-DA-training/year2_cases/exp_case/cadre26.<exp_name>/grid/C96_grid.tile"
+
+
+
+.. code-block:: bash
+
+    ufsda-spectra-ana-inc --yaml spectra_ana_inc.yaml
+    ufsda-inc-maps --yaml increment_maps.yaml
+    ufsda-obs-diag --yaml obs_diag.yaml
+    ufsda-jedi-log /work2/noaa/epic-explorer/<username>/CADRE-DA-training/year2_cases/exp_case/cadre26.<exp_name>/OUTPUT.fv3jedi \
         --output day3_log_report.txt
+
 
 Notes
 -----
 
 * All YAML files referenced above should be copied from the CADRE-DA-training
-  repository into your working input_yaml directory.
+  repository into your working ``input_yaml`` directory.
 * The diagnostics output directories will be created automatically.
 * Figures and tables generated by the diagnostics toolkit can be used
   directly in the CADRE 2026 training slides and documentation.
