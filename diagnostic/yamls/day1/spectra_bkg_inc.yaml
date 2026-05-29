@@ -1,5 +1,5 @@
 background:
-  atm_file: EXPDIR/bkg/ufsda.t18z.atm.f006.cubed_sphere_grid.nc
+  atm_file: Day1EXPDIR/bkg/ufsda.t18z.atm.f006.cubed_sphere_grid.nc
   vars:
     - ugrd
     - vgrd
@@ -7,7 +7,7 @@ background:
     - spfh
 
 increments:
-  prefix: EXPDIR/output/ufsda.t00z.atminc.cubed_sphere_grid.tile
+  prefix: Day1EXPDIR/output/ufsda.t00z.atminc.cubed_sphere_grid.tile
   grid_prefix: /work2/noaa/epic/CADRE2026/grid/C96_grid.tile
   vars:
     - u_inc

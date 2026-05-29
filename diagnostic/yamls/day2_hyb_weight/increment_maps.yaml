@@ -14,7 +14,7 @@ zonal_mean:
 
 experiments:
   - name: ctrl
-    prefix: "DAY1EXPDIR/output/ufsda.t00z.atminc.cubed_sphere_grid.tile"
+    prefix: "Day1EXPDIR/output/ufsda.t00z.atminc.cubed_sphere_grid.tile"
 
   - name: atms-thining
     prefix: "Day2hyb_wghtEXPDIR/output/ufsda.t00z.atminc.cubed_sphere_grid.tile"
@@ -23,3 +23,8 @@ grid:
   prefix: "/work2/noaa/epic/CADRE2026/grid/C96_grid.tile"
 
 output_dir: "./day2_hyb_weight/inc_plots"
+
+amplify:
+  enabled: false
+  factor: 8.0
+  apply_to_diff: false
