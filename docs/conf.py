@@ -24,6 +24,7 @@ extensions = [
     "sphinx.ext.napoleon",
     "sphinx.ext.viewcode",
     "sphinxcontrib.mermaid",
+    "myst_parser", 
     "sphinx_design",
 ]
 
