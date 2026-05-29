@@ -1,4 +1,0 @@
-atms_n20:
-  injected_file: "./obs.20240224.t00z.atms_n20.nc"
-  assimilated_file: "./diag.atms_n20_2024022400.nc"
-  output_file: "./single.obs.20240224.t00z.atms_n20.nc"

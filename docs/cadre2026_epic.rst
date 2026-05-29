@@ -28,11 +28,14 @@ Day 3 — Observation Error Experiments: ATMS Thinning and Error Tuning
 Logging Into Hercules
 ---------------------
 
-Use SSH with X11 forwarding enabled:
+Use SSH and verify environment:
 
 .. code-block:: bash
 
     ssh -X YOUR_USERID@hercules-login.hpc.msstate.edu
+    module load contrib noaatools
+    saccount_params
+    groups
 
 For detailed system login instructions (macOS/Windows, SSH, X11, PuTTY, XQuartz),
 including screenshots and troubleshooting notes, see
@@ -46,20 +49,15 @@ Clone the CADRE-DA-training Repository into Your EPIC Workspace
 ---------------------------------------------------------------
 
 On Hercules, each user should clone the training repository inside their
-EPIC project directory under /work2/noaa/epic/$USER. This keeps the job
+EPIC project directory under /work2/noaa/epic-explorer/$USER. This keeps the job
 scripts, YAML files, and experiment outputs in the same workspace.
 
 .. code-block:: bash
 
-    cd /work2/noaa/epic/$USER
+    mkdir -p /work2/noaa/epic-explorer/$USER
+    cd /work2/noaa/epic-explorer/$USER
     git clone https://github.com/NOAA-EPIC/CADRE-DA-training.git
     cd CADRE-DA-training/year2_cases
-
-The job card script is located at:
-
-.. code-block:: text
-
-    run_3dvar_hercules.sh
 
 Running the CADRE 2026 Experiments
 ----------------------------------
@@ -70,27 +68,7 @@ job card script:
 
 .. code-block:: text
 
-    https://github.com/NOAA-EPIC/CADRE-DA-training/blob/main/year2_cases/run_3dvar_hercules.sh
-
-Copy the YAML configuration files for each day into your working
-directory. For example, copy the Day 1 YAMLs:
-
-.. code-block:: bash
-
-    cd /path/to/CADRE-DA-training/year2_cases
-    cp ./input_yaml/Day1/*.yaml ./input_yaml
-
-Submit the job card using SLURM:
-
-.. code-block:: bash
-
-    sbatch run_3dvar_hercules.sh
-
-Monitor job progress:
-
-.. code-block:: bash
-
-    squeue -u $USER
+    run_3dvar_hercules.sh
 
 Prebuilt Experiment Outputs
 ---------------------------
@@ -99,19 +77,20 @@ All prebuilt CADRE 2026 experiment outputs are available at:
 
 .. code-block:: text
 
-    /work2/noaa/epic/CADRE2026
+    /work2/noaa/epic-explorer/cadre2026
 
 Example directory listing:
 
 .. code-block:: text
 
-    cadre26.8434573.day1
-    cadre26.8487509.day2_hyb_wght
-    cadre26.8487556.day2_nicas-length-scale
-    cadre26.8487557.day3_thinning
-    cadre26.8697363_atms-err-08
-    cadre26.8697429_atms-err-03
-    cadre26-diagnostics
+    cadre26.8895896.day1_ctrl
+    cadre26.8895942.day2_hyb_weight
+    cadre26.8896455.day2_nicas_length_scale
+    cadre26.8896479.day3_atms_thinning
+    cadre26.8897035.day3_atms_err08
+    cadre26.8900653.day3_no_atms
+    cadre26.8900895.atms_err
+    single_obs
     grid
 
 Running Diagnostics After Jobs Complete
@@ -121,18 +100,12 @@ Once the FV3-JEDI jobs finish, the UFS-DA Diagnostics toolkit can be
 applied to the output files. The following commands correspond to the
 Quickstart examples, adapted for the CADRE 2026 experiment structure.
 
-The diagnostics toolkit is installed at:
-
-.. code-block:: text
-
-    /work/noaa/epic/jongkim/ufs_da_diagnostics
-
-Activate the preconfigured environment:
+The diagnostics toolkit is installed and users can activate the preconfigured environment:
 
 .. code-block:: bash
 
     export MPLBACKEND=Agg
-    source /work/noaa/epic/jongkim/hercules.anaconda
+    source /work/noaa/epic-explorer/cadre2026/hercules.anaconda
 
 Prepare Diagnostics YAML Files
 ------------------------------
@@ -146,8 +119,8 @@ available under:
     /path/to/CADRE-DA-training/diagnostics/yamls/day2_hyb_weight
     /path/to/CADRE-DA-training/diagnostics/yamls/day2_nicas_length_scale
     /path/to/CADRE-DA-training/diagnostics/yamls/day3_atms_thining
-    /path/to/CADRE-DA-training/diagnostics/yamls/day3_atms_err_03
-    /path/to/CADRE-DA-training/diagnostics/yamls/day3_atms_err_08
+    /path/to/CADRE-DA-training/diagnostics/yamls/day3_atms_err
+    /path/to/CADRE-DA-training/diagnostics/yamls/day3_no_atms
 
 Before running the diagnostics, edit the YAML files for the
 corresponding day to set:
@@ -163,8 +136,16 @@ Typical fields to update inside each YAML include:
 * ``variable``, ``levels``, or ``vars`` list
 * ``diag``, ``prefix``, ``outdir``, or ``output_dir``  
 
-Day 1: Control Experiment Diagnostics
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Run the Day 1 Control Experiment and Diagnostics
+------------------------------------------------
+
+.. code-block:: bash
+
+    cd /work2/noaa/epic-explorer/$USER/CADRE-DA-training/year2_cases
+    cp ./input_yaml/Day1/*.yaml ./input_yaml
+    sbatch run_3dvar_hercules.sh
+    squeue -u $USER
 
 .. code-block:: bash
 
@@ -173,6 +154,37 @@ Day 1: Control Experiment Diagnostics
     ufsda-obs-diag --yaml obs_diag_day1.yaml
     ufsda-jedi-log /work2/noaa/epic/CADRE2026/cadre26.8434573.day1/OUTPUT.fv3jedi \
         --output day1_log_report.txt
+
+Key Aspects to Verify Day 1 Experiment Outputs
+----------------------------------------------
+
+- Increment maps: smooth, physically consistent
+- Zonal-mean increments: balanced vertical structure
+- OMB/OMA: OMA variance < OMB variance
+- Jo convergence: decreasing cost function
+- Jo/p:reasonal range 
+- Baseline power spectra: correct scale separation
+
+Optional Single-Obs Experiments
+-------------------------------
+
+Single-observation YAMLs are available under:
+
+.. code-block:: text
+
+    CADRE-DA-training/year2_cases/input_yaml/single_obs
+
+These include input yaml file directories for control, NICAS length-scale, hybrid-weight, and ATMS obs-error cases.
+
+To run:
+
+.. code-block:: bash
+
+    cd /work2/noaa/epic-explorer/$USER/CADRE-DA-training/year2_cases
+    cp ./input_yaml/single_obs/<case>/*.yaml ./input_yaml
+    sbatch run_3dvar_hercules.sh
+
+Diagnostics can be applied the same way as above.
 
 Day 2: Background Error Experiments (Hybrid Weight, NICAS)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

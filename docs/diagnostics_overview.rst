@@ -45,76 +45,157 @@ diagnostics and provide example figures illustrating their use.
 Spectral Diagnostics
 ====================
 
-Formulation
------------
+Overview
+--------
 
-Zonal Fourier Transform
-~~~~~~~~~~~~~~~~~~~~~~~
+Spectral diagnostics quantify how variance is distributed across spatial
+scales. The UFS DA diagnostics compute *isotropic 1‑D spectra* derived
+from a full *2‑D horizontal Fourier transform*. This reveals how the
+background (BKG), increments (INC), and experiment differences modify
+energy across scales.
 
-For a field :math:`x(\lambda, \phi)` on a regular longitude grid:
+2‑D Fourier Transform
+---------------------
+
+For a horizontal field :math:`f(x, y)` on an :math:`N_x \times N_y` grid,
+the 2‑D Discrete Fourier Transform is
 
 .. math::
 
-   \hat{x}_k(\phi) =
-   \frac{1}{N_\lambda}
-   \sum_{n=0}^{N_\lambda - 1}
-   x(\lambda_n, \phi)\, e^{-i k \lambda_n}
+   F(k_x, k_y) =
+   \sum_{x=0}^{N_x-1}
+   \sum_{y=0}^{N_y-1}
+   f(x, y)\,
+   e^{-i 2\pi \left( \frac{k_x x}{N_x} + \frac{k_y y}{N_y} \right)}
+
+Each pair :math:`(k_x, k_y)` corresponds to one *grid‑scale sinusoidal
+wave* with a specific wavelength and direction.
 
 Power Spectrum
-~~~~~~~~~~~~~~
+--------------
+
+The 2‑D power spectrum is
 
 .. math::
 
-   P(k) = \langle |\hat{x}_k(\phi)|^2 \rangle_{\phi}
+   P(k_x, k_y) = |F(k_x, k_y)|^2
 
-**Meaning:** Distribution of variance across spatial scales.
+This represents the energy contribution of each grid‑scale wave.
 
-Spectral Ratio (EXP vs CTRL)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Isotropic Spectrum
+------------------
+
+The 2‑D spectrum is radially averaged into bins of total wavenumber
 
 .. math::
 
-   R(k) = \frac{P_{\mathrm{EXP}}(k)}{P_{\mathrm{CTRL}}(k)}
+   K = \sqrt{k_x^2 + k_y^2}
 
-**Meaning:**  
-- :math:`R(k) > 1` → EXP has more variance at scale :math:`k`  
-- :math:`R(k) < 1` → EXP has less variance  
+to produce a 1‑D isotropic spectrum :math:`P(K)`. This gives the
+distribution of variance across spatial scales.
 
+Parseval Consistency
+--------------------
 
-Background vs Increment Spectra
--------------------------------
+The total variance in physical space equals the total power in spectral
+space:
+
+.. math::
+
+   \sum_{x,y} f(x,y)^2
+   =
+   \frac{1}{N_x N_y}
+   \sum_{k_x,k_y} |F(k_x, k_y)|^2
+
+This ensures that the isotropic spectrum is a true variance
+decomposition by scale.
+
+Background vs Increment Spectra (Control Experiment)
+----------------------------------------------------
+
+The background (BKG) spectrum typically follows a smooth power‑law decay,
+reflecting the model’s natural distribution of variance. The increment
+(INC) spectrum is much smaller and shows how the analysis updates
+redistribute variance across scales.
+
+A *healthy* DA system produces increments that:
+
+- contain most of their energy at large scales  
+- have very little high‑wavenumber energy  
+- do not inject noise at small scales  
+
+In the control experiment, the increment spectrum exhibits a *large‑scale
+plateau*. This is expected: the largest scales are dominated by broad,
+domain‑wide adjustments, and the isotropic bins at the smallest
+wavenumbers contain only a few modes, producing a flat appearance.
 
 .. figure:: _static/images/spectra/bkg_T_inc_L75.png
    :width: 90%
    :align: center
    :class: left-caption
 
-   Background and increment spectra for temperature at model level 75.
-   The increment spectrum shows how analysis updates redistribute
-   variance across spatial scales relative to the background. Enhanced
-   small‑scale variance indicates localized corrections, while reduced
-   high‑wavenumber variance indicates smoother increments.
+   Background and increment spectra for temperature at model level 75 in
+   the control experiment. The increment spectrum is smooth and confined
+   to large scales. The plateau at the lowest wavenumbers reflects broad,
+   domain‑scale adjustments and the small number of modes in the first
+   isotropic bins.
 
+Spectral Ratio (EXP vs CTRL)
+----------------------------
 
-NICAS Length‑Scale Comparison
+The spectral ratio compares the scale‑dependent variance between two
+experiments:
+
+.. math::
+
+   R(K) = \frac{P_{\mathrm{EXP}}(K)}{P_{\mathrm{CTRL}}(K)}
+
+Interpretation:
+
+- :math:`R(K) > 1` — EXP has **more energy in the grid‑scale waves** at scale :math:`K`
+- :math:`R(K) < 1` — EXP has **less energy** at that scale
+
+NICAS Length‑Scale Experiment
 -----------------------------
 
-The NICAS experiment modifies the static background‑error covariance by
-increasing the horizontal correlation length scale specified in the
-SABER NICAS operator. A larger length scale produces broader spatial
-correlations and smoother increments, which appear in the spectra as
-enhanced low‑wavenumber variance and reduced high‑wavenumber variance.
+Increasing the NICAS horizontal correlation length scale broadens the
+static covariance’s spatial correlations. The static covariance itself is
+unchanged in shape; only the length scale parameter increases. This
+produces smoother increments and enhances variance at the largest
+spatial scales (small K), while reducing variance at smaller scales.
 
-.. figure:: _static/images/spectra/T_inc_ctrl_vs_length-scale_spectra_L75.png
+.. figure:: _static/images/spectra/T_inc_ctrl_vs_nicas_length_scale_spectra_L75.png
    :width: 90%
    :align: center
    :class: left-caption
 
-   Comparison of CTRL and NICAS length‑scale experiments for temperature
-   increments at level 75. The NICAS experiment uses a larger horizontal
-   correlation length scale in the SABER NICAS operator, broadening the
-   background‑error correlations. This increases large‑scale variance
-   and suppresses small‑scale variance, producing smoother increments.
+   CTRL vs NICAS length‑scale increment spectra at model level 75.
+   Increasing the NICAS horizontal correlation length scale boosts
+   large‑scale variance and suppresses small‑scale variance, producing
+   smoother increments.
+
+Static Background Covariance Weight Experiment
+----------------------------------------------
+
+This experiment increases the weight of the climatology‑based static
+background‑error covariance in the hybrid formulation. The static
+covariance itself is unchanged; only its relative contribution to the
+total hybrid covariance increases compared to the flow‑dependent
+ensemble covariance.
+
+Increasing the static weight enhances variance at the largest spatial
+scales (small K) while suppressing variance at smaller scales. This
+produces smoother increments dominated by broad, domain‑scale structure.
+
+.. figure:: _static/images/spectra/T_inc_ctrl_vs_hyb_weight_spectra_L75.png
+   :width: 90%
+   :align: center
+   :class: left-caption
+
+   CTRL vs increased static background‑covariance weight for temperature
+   increments at level 75. The increased static weight boosts large‑scale
+   variance and damps small‑scale variance, reflecting the dominance of
+   smoother climatological static covariance.
 
 
 Observation Statistics
@@ -217,49 +298,92 @@ Chi‑Square Consistency Check
 ============================
 
 The chi‑square consistency diagnostic evaluates whether the innovations
-(OMB) are statistically compatible with the assumed observation‑error
-covariance. This test is widely used in data assimilation to assess
-whether the specified observation errors are under‑ or over‑estimated.
+(OMB) are broadly compatible with the assumed observation‑error
+variances. It provides a quick indication of whether the specified
+observation‑error model is reasonable.
 
-For scalar observations with departures :math:`d_{b,i}` and
-observation‑error variances :math:`\sigma_{o,i}^2`, the chi‑square
-statistic is
+For each observation i, the innovation d_b is scaled by its assumed
+observation‑error variance σ_{o,i}². The normalized innovation is
+
+.. math::
+
+   z_i = \frac{d_{b,i}}{\sigma_{o,i}}.
+
+If the observation‑error model is reasonable, the average value of z_i²
+should be close to one. This leads to the chi‑square consistency measure
 
 .. math::
 
    \chi^2 = \frac{1}{N} \sum_{i=1}^{N}
             \frac{d_{b,i}^2}{\sigma_{o,i}^2}.
 
-**Interpretation:**
+Interpretation
+--------------
 
-- :math:`\chi^2 \approx 1`  
-  → observation errors are consistent with the actual innovation
-  statistics.
+- χ² ≈ 1  
+  → observation‑error variances are broadly consistent with the size of
+    the innovations.
 
-- :math:`\chi^2 \gg 1`  
-  → observation errors are underestimated (innovations too large).
+- χ² >> 1  
+  → observation‑error variances are likely too small (innovations too
+    large).
 
-- :math:`\chi^2 \ll 1`  
-  → observation errors are overestimated (innovations too small).
+- χ² << 1  
+  → observation‑error variances are likely too large (innovations too
+    small).
 
-In practice, the toolkit computes this diagnostic by parsing the JEDI
-log file and extracting the reported values of :math:`\mathrm{Jo}` and
-the number of assimilated observations :math:`p`, using the relation
+Practical Computation in JEDI
+-----------------------------
+
+The toolkit computes this diagnostic by reading the JEDI log and using
+the reported values of Jo and the number of assimilated observations p:
 
 .. math::
 
-   \chi^2 \approx \frac{\mathrm{Jo}}{p}.
+   \chi^2 \approx \frac{J_o}{p}.
 
-A value near unity indicates that the observation‑error model is
-statistically consistent with the innovations.
+Here Jo/p is a practical, heuristic average of the normalized innovation
+variance. It is not a formal statistical test, but it provides a quick
+sense of whether the assumed observation‑error variances are in a
+reasonable range.
+
+Channel‑Wise Normalized RMS²
+----------------------------
+
+The `obs_diagnostic.py (ufsda-obs-diag)` script also computes a channel‑by‑channel normalized
+RMS² value for instruments such as ATMS:
+
+.. math::
+
+   \mathrm{NRMS}^2_c = \frac{1}{N_c}
+                       \sum_{i \in c}
+                       \frac{d_{b,i}^2}{\sigma_{o,i}^2},
+
+where N_c is the number of assimilated observations in channel c.
+
+This quantity is directly comparable to Jo/p, but computed separately for
+each channel rather than over all observations. Channel‑wise NRMS² helps
+identify channels with mis-specified observation errors or
+representativeness issues.
 
 Reference
 ---------
 
-The chi‑square consistency principle is discussed in:
+- Talagrand, O. (2003). Evaluation of probabilistic prediction systems.
+  ECMWF Workshop on Diagnostics for Data Assimilation Systems.
 
-- Talagrand, O. (2003). *Evaluation of probabilistic prediction systems*.
-  In: **Workshop on Diagnostics for Data Assimilation Systems**, ECMWF.
+Weather Events Diagnostics
+--------------------------
 
-This reference provides the theoretical basis for interpreting
-:math:`\mathrm{Jo}/p` as a measure of observation‑error consistency.
+The weather‑events module provides global synoptic‑scale diagnostics
+derived from FV3 ATM background fields. It identifies dynamically coherent
+features such as:
+
+* 500 hPa cyclone centers (vorticity‑based)
+* 250 hPa jet streaks (ridge detection)
+* 850 hPa baroclinic zones (temperature‑gradient magnitude)
+
+These diagnostics complement increment‑based tools by providing a
+large‑scale flow context for DA experiments.
+
+See :doc:`usage_weather_events` for usage examples.

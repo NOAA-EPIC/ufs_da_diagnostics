@@ -1,71 +1,84 @@
-#!/usr/bin/env python3
 """
-Observation Diagnostics Driver
-==============================
+obs_diagnostic.py
 
-This module provides a lightweight command‑line interface for running the
-observation‑level diagnostics in ``ufs_da_diagnostics``. It loads a YAML
-configuration file describing the observations to process and dispatches
-all requested diagnostics through the ``ObsDiagPlotter`` orchestrator.
+This module is the *orchestrator* for UFS DA observation diagnostics.
+It is intentionally lightweight and contains NO plotting logic.
 
-Typical usage:
+Responsibilities:
+  • Load YAML configuration
+  • Construct ObsDiagPlotter (the real plotting engine)
+  • Dispatch diagnostics for each observation type
+  • Provide the `main()` function required by the CLI tool:
+        ufsda-obs-diag --yaml config.yaml
 
-    $ python obs_diagnostic.py --yaml obs_plots.yaml
-
-The YAML file specifies observation types (ATMS, scalar, vector),
-diagnostics to run (histograms, stats, extended stats, scan‑position,
-latitude‑binned), and output directories. See the user guide for details.
+All heavy plotting lives in:
+    ufs_da_diagnostics/plots/obs_diag_plotter.py
 """
 
 import os
-import sys
-import argparse
 import yaml
+from netCDF4 import Dataset
 
+# The real plotting engine lives in plots/
 from ..plots.obs_diag_plotter import ObsDiagPlotter
 
 
-def parse_args():
+# ============================================================
+# ObsDiagPlotter Wrapper
+# ============================================================
+
+class ObsDiagPlotterWrapper:
     """
-    Parse command‑line arguments.
+    Wrapper class that:
+      • Loads YAML config
+      • Instantiates ObsDiagPlotter
+      • Runs diagnostics
 
-    Returns
-    -------
-    argparse.Namespace
-        Parsed arguments containing:
-
-        - ``yaml``: Path to the YAML configuration file.
+    This keeps obs_diagnostic.py clean and import‑safe.
     """
-    p = argparse.ArgumentParser()
-    p.add_argument("--yaml", required=True, help="YAML config for obs diagnostics")
-    return p.parse_args()
 
+    def __init__(self, config_path):
+        self.config_path = config_path
+
+        if not os.path.exists(config_path):
+            raise FileNotFoundError(f"YAML config not found: {config_path}")
+
+        with open(config_path, "r") as f:
+            self.config = yaml.safe_load(f)
+
+        # Create the plotting engine
+        self.plotter = ObsDiagPlotter(self.config)
+
+    def run(self):
+        """Run all diagnostics defined in the YAML."""
+        print(f"[INFO] Loaded YAML: {self.config_path}")
+        self.plotter.run()
+
+
+# ============================================================
+# CLI Entry Point (required by ufsda-obs-diag)
+# ============================================================
 
 def main():
     """
-    Main entry point for running observation diagnostics.
+    Entry point for the CLI tool `ufsda-obs-diag`.
 
-    Steps
-    -----
-    1. Parse command‑line arguments.
-    2. Load the YAML configuration.
-    3. Instantiate ``ObsDiagPlotter`` with the configuration.
-    4. Execute all requested diagnostics.
+    The CLI wrapper executes:
+        from ufs_da_diagnostics.obs.obs_diagnostic import main
+        sys.exit(main())
 
-    Notes
-    -----
-    - The YAML file controls all diagnostics behavior.
-    - Output directories are created automatically by the plotter.
+    This function:
+      1. Parses --yaml argument
+      2. Loads YAML config
+      3. Runs ObsDiagPlotterWrapper
     """
-    args = parse_args()
-    with open(args.yaml, "r") as f:
-        cfg = yaml.safe_load(f)
+    import argparse
 
-    print(f"[INFO] Loaded config: {args.yaml}")
-    plotter = ObsDiagPlotter(cfg)
-    plotter.run()
+    parser = argparse.ArgumentParser(description="UFS DA Observation Diagnostics")
+    parser.add_argument("--yaml", required=True, help="YAML configuration file")
+    args = parser.parse_args()
 
+    wrapper = ObsDiagPlotterWrapper(args.yaml)
+    wrapper.run()
 
-if __name__ == "__main__":
-    main()
-
+    return 0  # required for sys.exit(main())
