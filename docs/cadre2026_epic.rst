@@ -170,11 +170,11 @@ Optional Single-Obs Experiments
 
 Single-observation YAMLs are available under:
 
-CADRE-DA-training/year2_cases/input_yaml/single_obs
+.. code-block:: text
 
-Code
+    CADRE-DA-training/year2_cases/input_yaml/single_obs
 
-These include input yaml directories: control, NICAS length-scale, hybrid-weight, and ATMS obs-error cases.
+These include input yaml file directories for control, NICAS length-scale, hybrid-weight, and ATMS obs-error cases.
 
 To run:
 
