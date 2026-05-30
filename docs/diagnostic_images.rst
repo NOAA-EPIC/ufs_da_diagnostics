@@ -496,38 +496,38 @@ ATMS Error
       .. dropdown:: Specific Humidity (sphum)
          :color: secondary
 
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err/inc_plots/sphum_inc_L126_ctrl_vs_atms_err.png
          
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err/inc_plots/sphum_inc_L75_ctrl_vs_atms_err.png
          
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err/inc_plots/sphum_inc_zonal_mean_full_ctrl_vs_atms_err.png
 
       .. dropdown:: Temperature (T)
          :color: secondary
 
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err/inc_plots/T_inc_L126_ctrl_vs_atms_err.png
 
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err/inc_plots/T_inc_L75_ctrl_vs_atms_err.png
          
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err/inc_plots/T_inc_zonal_mean_full_ctrl_vs_atms_err.png
 
       .. dropdown:: Zonal Wind (U)
          :color: secondary
 
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err/inc_plots/u_inc_L126_ctrl_vs_atms_err.png
 
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err/inc_plots/u_inc_L75_ctrl_vs_atms_err.png
          
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err/inc_plots/u_inc_zonal_mean_full_ctrl_vs_atms_err.png
 
       .. dropdown:: Meridional Wind (V)
          :color: secondary
 
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err/inc_plots/v_inc_L126_ctrl_vs_atms_err.png
 
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err/inc_plots/v_inc_L75_ctrl_vs_atms_err.png
          
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err/inc_plots/v_inc_zonal_mean_full_ctrl_vs_atms_err.png
 
    .. dropdown:: Observation Diagnostics
       :color: primary
@@ -535,83 +535,81 @@ ATMS Error
       .. dropdown:: ATMS Channels
          :color: secondary
 
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err/obs-diag/atms_ch01_hist.png
 
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err/obs-diag/atms_ch02_hist.png
 
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err/obs-diag/atms_ch03_hist.png
          
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err/obs-diag/atms_ch04_hist.png
 
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err/obs-diag/atms_ch05_hist.png
 
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err/obs-diag/atms_ch06_hist.png
 
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err/obs-diag/atms_ch07_hist.png
 
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err/obs-diag/atms_ch08_hist.png
 
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err/obs-diag/atms_ch09_hist.png
 
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err/obs-diag/atms_ch10_hist.png
 
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err/obs-diag/atms_ch11_hist.png
 
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err/obs-diag/atms_ch12_hist.png
 
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err/obs-diag/atms_ch13_hist.png
 
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err/obs-diag/atms_ch14_hist.png
 
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err/obs-diag/atms_ch15_hist.png
 
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err/obs-diag/atms_ch16_hist.png
 
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err/obs-diag/atms_ch17_hist.png
 
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err/obs-diag/atms_ch18_hist.png
 
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err/obs-diag/atms_ch19_hist.png
 
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err/obs-diag/atms_ch20_hist.png
 
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err/obs-diag/atms_ch21_hist.png
 
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err/obs-diag/atms_ch22_hist.png
 
       .. dropdown:: ATMS Summary Statistics
          :color: secondary
 
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err/obs-diag/atms_latbins_qc2.png
 
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err/obs-diag/atms_scan_position_qc2.png
 
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err/obs-diag/atms_stats.png
 
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err/
-
-
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err/obs-diag/atms_stats_extended.png
+         
       .. dropdown:: GNSSRO
          :color: secondary
 
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err/obs-diag/gnssro_hist.png
 
       .. dropdown:: Conventional
          :color: secondary
 
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err/obs-diag/conventional_ps_hist.png
 
       .. dropdown:: Satellite Winds
          :color: secondary
 
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err/obs-diag/satwnd_u_hist.png
 
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err/obs-diag/satwnd_v_hist.png
 
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err/obs-diag/scatwnd_u_hist.png
 
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err/
-
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err/obs-diag/scatwnd_v_hist.png
 
    .. dropdown:: Spectral Diagnostics
       :color: primary
@@ -619,32 +617,31 @@ ATMS Error
       .. dropdown:: Specific Humidity
          :color: secondary
 
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err/spectra-inc/sphum_inc_ctrl_vs_atms_err_spectra_L126.png
 
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err/spectra-inc/sphum_inc_ctrl_vs_atms_err_spectra_L75.png
 
 
       .. dropdown:: Temperature (T)
          :color: secondary
 
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err/spectra-inc/T_inc_ctrl_vs_atms_err_spectra_L126.png
 
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err/spectra-inc/T_inc_ctrl_vs_atms_err_spectra_L75.png
 
       .. dropdown:: Zonal Wind (U)
          :color: secondary
 
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err/spectra-inc/u_inc_ctrl_vs_atms_err_spectra_L126.png
 
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err/spectra-inc/u_inc_ctrl_vs_atms_err_spectra_L75.png
 
       .. dropdown:: Meridional Wind (V)
          :color: secondary
 
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err/spectra-inc/v_inc_ctrl_vs_atms_err_spectra_L126.png
 
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err/
-
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err/spectra-inc/v_inc_ctrl_vs_atms_err_spectra_L75.png
 
 ATMS Error 08
 ^^^^^^^^^^^^^^^
@@ -655,38 +652,39 @@ ATMS Error 08
       .. dropdown:: Specific Humidity (sphum)
          :color: secondary
 
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err08/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err08/inc_plots/sphum_inc_L126_ctrl_vs_atms_err08.png
          
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err08/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err08/inc_plots/sphum_inc_L75_ctrl_vs_atms_err08.png
          
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err08/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err08/inc_plots/sphum_inc_zonal_mean_full_ctrl_vs_atms_err08.png
 
       .. dropdown:: Temperature (T)
          :color: secondary
 
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err08/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err08/inc_plots/T_inc_L126_ctrl_vs_atms_err08.png
 
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err08/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err08/inc_plots/T_inc_L75_ctrl_vs_atms_err08.png
          
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err08/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err08/inc_plots/T_inc_zonal_mean_full_ctrl_vs_atms_err08.png
 
       .. dropdown:: Zonal Wind (U)
          :color: secondary
 
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err08/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err08/inc_plots/u_inc_L126_ctrl_vs_atms_err08.png
 
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err08/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err08/inc_plots/u_inc_L75_ctrl_vs_atms_err08.png
          
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err08/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err08/inc_plots/u_inc_zonal_mean_full_ctrl_vs_atms_err08.png
 
       .. dropdown:: Meridional Wind (V)
          :color: secondary
 
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err08/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err08/inc_plots/v_inc_L126_ctrl_vs_atms_err08.png
 
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err08/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err08/inc_plots/v_inc_L75_ctrl_vs_atms_err08.png
          
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err08/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err08/inc_plots/v_inc_zonal_mean_full_ctrl_vs_atms_err08.png
+
 
    .. dropdown:: Observation Diagnostics
       :color: primary
@@ -694,83 +692,81 @@ ATMS Error 08
       .. dropdown:: ATMS Channels
          :color: secondary
 
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err08/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err08/obs-diag/atms_ch01_hist.png
 
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err08/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err08/obs-diag/atms_ch02_hist.png
 
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err08/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err08/obs-diag/atms_ch03_hist.png
          
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err08/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err08/obs-diag/atms_ch04_hist.png
 
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err08/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err08/obs-diag/atms_ch05_hist.png
 
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err08/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err08/obs-diag/atms_ch06_hist.png
 
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err08/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err08/obs-diag/atms_ch07_hist.png
 
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err08/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err08/obs-diag/atms_ch08_hist.png
 
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err08/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err08/obs-diag/atms_ch09_hist.png
 
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err08/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err08/obs-diag/atms_ch10_hist.png
 
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err08/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err08/obs-diag/atms_ch11_hist.png
 
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err08/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err08/obs-diag/atms_ch12_hist.png
 
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err08/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err08/obs-diag/atms_ch13_hist.png
 
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err08/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err08/obs-diag/atms_ch14_hist.png
 
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err08/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err08/obs-diag/atms_ch15_hist.png
 
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err08/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err08/obs-diag/atms_ch16_hist.png
 
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err08/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err08/obs-diag/atms_ch17_hist.png
 
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err08/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err08/obs-diag/atms_ch18_hist.png
 
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err08/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err08/obs-diag/atms_ch19_hist.png
 
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err08/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err08/obs-diag/atms_ch20_hist.png
 
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err08/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err08/obs-diag/atms_ch21_hist.png
 
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err08/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err08/obs-diag/atms_ch22_hist.png
 
       .. dropdown:: ATMS Summary Statistics
          :color: secondary
 
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err08/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err08/obs-diag/atms_latbins_qc2.png
 
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err08/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err08/obs-diag/atms_scan_position_qc2.png
 
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err08/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err08/obs-diag/atms_stats.png
 
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err08/
-
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err08/obs-diag/atms_stats_extended.png
 
       .. dropdown:: GNSSRO
          :color: secondary
 
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err08/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err08/obs-diag/gnssro_hist.png
 
       .. dropdown:: Conventional
          :color: secondary
 
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err08/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err08/obs-diag/conventional_ps_hist.png
 
       .. dropdown:: Satellite Winds
          :color: secondary
 
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err08/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err08/obs-diag/satwnd_u_hist.png
 
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err08/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err08/obs-diag/satwnd_v_hist.png
 
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err08/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err08/obs-diag/scatwnd_u_hist.png
 
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err08/
-
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err08/obs-diag/scatwnd_v_hist.png
 
    .. dropdown:: Spectral Diagnostics
       :color: primary
@@ -778,32 +774,31 @@ ATMS Error 08
       .. dropdown:: Specific Humidity
          :color: secondary
 
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err08/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err08/spectra-inc/sphum_inc_ctrl_vs_atms_err08_spectra_L126.png
 
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err08/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err08/spectra-inc/sphum_inc_ctrl_vs_atms_err08_spectra_L75.png
 
 
       .. dropdown:: Temperature (T)
          :color: secondary
 
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err08/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err08/spectra-inc/T_inc_ctrl_vs_atms_err08_spectra_L126.png
 
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err08/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err08/spectra-inc/T_inc_ctrl_vs_atms_err08_spectra_L75.png
 
       .. dropdown:: Zonal Wind (U)
          :color: secondary
 
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err08/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err08/spectra-inc/u_inc_ctrl_vs_atms_err08_spectra_L126.png
 
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err08/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err08/spectra-inc/u_inc_ctrl_vs_atms_err08_spectra_L75.png
 
       .. dropdown:: Meridional Wind (V)
          :color: secondary
 
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err08/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err08/spectra-inc/v_inc_ctrl_vs_atms_err08_spectra_L126.png
 
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err08/
-
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_err08/spectra-inc/v_inc_ctrl_vs_atms_err08_spectra_L75.png
 
 
 ATMS Thinning
@@ -815,38 +810,38 @@ ATMS Thinning
       .. dropdown:: Specific Humidity (sphum)
          :color: secondary
 
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_thining/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_thinning/inc_plots/sphum_inc_L126_ctrl_vs_atms_thinning.png
          
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_thining/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_thinning/inc_plots/sphum_inc_L75_ctrl_vs_atms_thinning.png
          
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_thining/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_thinning/inc_plots/sphum_inc_zonal_mean_full_ctrl_vs_atms_thinning.png
 
       .. dropdown:: Temperature (T)
          :color: secondary
 
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_thining/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_thinning/inc_plots/T_inc_L126_ctrl_vs_atms_thinning.png
 
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_thining/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_thinning/inc_plots/T_inc_L75_ctrl_vs_atms_thinning.png
          
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_thining/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_thinning/inc_plots/T_inc_zonal_mean_full_ctrl_vs_atms_thinning.png
 
       .. dropdown:: Zonal Wind (U)
          :color: secondary
 
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_thining/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_thinning/inc_plots/u_inc_L126_ctrl_vs_atms_thinning.png
 
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_thining/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_thinning/inc_plots/u_inc_L75_ctrl_vs_atms_thinning.png
          
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_thining/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_thinning/inc_plots/u_inc_zonal_mean_full_ctrl_vs_atms_thinning.png
 
       .. dropdown:: Meridional Wind (V)
          :color: secondary
 
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_thining/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_thinning/inc_plots/v_inc_L126_ctrl_vs_atms_thinning.png
 
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_thining/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_thinning/inc_plots/v_inc_L75_ctrl_vs_atms_thinning.png
          
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_thining/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_thinning/inc_plots/v_inc_zonal_mean_full_ctrl_vs_atms_thinning.png
 
    .. dropdown:: Observation Diagnostics
       :color: primary
@@ -854,82 +849,99 @@ ATMS Thinning
       .. dropdown:: ATMS Channels
          :color: secondary
 
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_thining/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_thinning/obs-diag/atms_ch01_hist.png
 
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_thining/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_thinning/obs-diag/atms_ch02_hist.png
 
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_thining/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_thinning/obs-diag/atms_ch03_hist.png
          
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_thining/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_thinning/obs-diag/atms_ch04_hist.png
 
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_thining/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_thinning/obs-diag/atms_ch05_hist.png
 
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_thining/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_thinning/obs-diag/atms_ch06_hist.png
 
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_thining/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_thinning/obs-diag/atms_ch07_hist.png
 
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_thining/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_thinning/obs-diag/atms_ch08_hist.png
 
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_thining/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_thinning/obs-diag/atms_ch09_hist.png
 
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_thining/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_thinning/obs-diag/atms_ch10_hist.png
 
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_thining/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_thinning/obs-diag/atms_ch11_hist.png
 
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_thining/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_thinning/obs-diag/atms_ch12_hist.png
 
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_thining/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_thinning/obs-diag/atms_ch13_hist.png
 
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_thining/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_thinning/obs-diag/atms_ch14_hist.png
 
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_thining/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_thinning/obs-diag/atms_ch15_hist.png
 
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_thining/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_thinning/obs-diag/atms_ch16_hist.png
 
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_thining/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_thinning/obs-diag/atms_ch17_hist.png
 
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_thining/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_thinning/obs-diag/atms_ch18_hist.png
 
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_thining/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_thinning/obs-diag/atms_ch19_hist.png
 
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_thining/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_thinning/obs-diag/atms_ch20_hist.png
 
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_thining/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_thinning/obs-diag/atms_ch21_hist.png
 
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_thining/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_thinning/obs-diag/atms_ch22_hist.png
 
       .. dropdown:: ATMS Summary Statistics
          :color: secondary
 
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_thining/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_thinning/obs-diag/atms_latbins_qc2.png
 
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_thining/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_thinning/obs-diag/atms_scan_position_qc2.png
 
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_thining/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_thinning/obs-diag/atms_stats_extended.png
 
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_thining/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_thinning/obs-diag/atms_stats.png
 
+
+         .. dropdown:: GNSSRO
+            :color: primary
+
+            .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_thinning/obs-diag/scatter_maps/atms_ch01_omb_map.png
+
+            .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_thinning/obs-diag/scatter_maps/atms_ch02_omb_map.png
+
+            .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_thinning/obs-diag/scatter_maps/conventional_ps_omb_map.png
+
+            .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_thinning/obs-diag/scatter_maps/gnssro_omb_map.png
+
+            .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_thinning/obs-diag/scatter_maps/satwnd_omb_map.png
+
+            .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_thinning/obs-diag/scatter_maps/scatwnd_omb_map.png
 
       .. dropdown:: GNSSRO
          :color: secondary
 
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_thining/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_thinning/obs-diag/gnssro_hist.png
 
       .. dropdown:: Conventional
          :color: secondary
 
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_thining/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_thinning/obs-diag/conventional_ps_hist.png
 
       .. dropdown:: Satellite Winds
          :color: secondary
 
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_thining/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_thinning/obs-diag/satwnd_u_hist.png
 
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_thining/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_thinning/obs-diag/satwnd_v_hist.png
 
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_thining/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_thinning/obs-diag/scatwnd_u_hist.png
 
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_thining/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_thinning/obs-diag/scatwnd_v_hist.png
+
+   .. COMMENT: Add section for scatter maps!
 
 
    .. dropdown:: Spectral Diagnostics
@@ -938,32 +950,30 @@ ATMS Thinning
       .. dropdown:: Specific Humidity
          :color: secondary
 
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_thining/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_thinning/spectra-inc/sphum_inc_ctrl_vs_atms-thining_spectra_L126.png
 
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_thining/
-
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_thinning/spectra-inc/sphum_inc_ctrl_vs_atms-thining_spectra_L75.png
 
       .. dropdown:: Temperature (T)
          :color: secondary
 
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_thining/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_thinning/spectra-inc/T_inc_ctrl_vs_atms-thining_spectra_L126.png
 
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_thining/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_thinning/spectra-inc/T_inc_ctrl_vs_atms-thining_spectra_L75.png
 
       .. dropdown:: Zonal Wind (U)
          :color: secondary
 
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_thining/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_thinning/spectra-inc/u_inc_ctrl_vs_atms-thining_spectra_L126.png
 
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_thining/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_thinning/spectra-inc/u_inc_ctrl_vs_atms-thining_spectra_L75.png
 
       .. dropdown:: Meridional Wind (V)
          :color: secondary
 
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_thining/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_thinning/spectra-inc/v_inc_ctrl_vs_atms-thining_spectra_L126.png
 
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_thining/
-
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_atms_thinning/spectra-inc/v_inc_ctrl_vs_atms-thining_spectra_L75.png
 
 
 No ATMS
@@ -975,121 +985,63 @@ No ATMS
       .. dropdown:: Specific Humidity (sphum)
          :color: secondary
 
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_no_atms/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_no_atms/inc_plots/sphum_inc_L126_ctrl_vs_no_atms.png 
          
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_no_atms/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_no_atms/inc_plots/sphum_inc_L75_ctrl_vs_no_atms.png
          
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_no_atms/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_no_atms/inc_plots/sphum_inc_zonal_mean_full_ctrl_vs_no_atms.png
 
       .. dropdown:: Temperature (T)
          :color: secondary
 
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_no_atms/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_no_atms/inc_plots/T_inc_L126_ctrl_vs_no_atms.png
 
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_no_atms/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_no_atms/inc_plots/T_inc_L75_ctrl_vs_no_atms.png
          
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_no_atms/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_no_atms/inc_plots/T_inc_zonal_mean_full_ctrl_vs_no_atms.png
 
       .. dropdown:: Zonal Wind (U)
          :color: secondary
 
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_no_atms/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_no_atms/inc_plots/u_inc_L126_ctrl_vs_no_atms.png
 
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_no_atms/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_no_atms/inc_plots/u_inc_L75_ctrl_vs_no_atms.png
          
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_no_atms/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_no_atms/inc_plots/u_inc_zonal_mean_full_ctrl_vs_no_atms.png
 
       .. dropdown:: Meridional Wind (V)
          :color: secondary
 
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_no_atms/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_no_atms/inc_plots/v_inc_L126_ctrl_vs_no_atms.png
 
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_no_atms/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_no_atms/inc_plots/v_inc_L75_ctrl_vs_no_atms.png
          
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_no_atms/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_no_atms/inc_plots/v_inc_zonal_mean_full_ctrl_vs_no_atms.png
+
 
    .. dropdown:: Observation Diagnostics
       :color: primary
 
-      .. dropdown:: ATMS Channels
-         :color: secondary
-
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_no_atms/
-
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_no_atms/
-
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_no_atms/
-         
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_no_atms/
-
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_no_atms/
-
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_no_atms/
-
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_no_atms/
-
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_no_atms/
-
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_no_atms/
-
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_no_atms/
-
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_no_atms/
-
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_no_atms/
-
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_no_atms/
-
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_no_atms/
-
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_no_atms/
-
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_no_atms/
-
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_no_atms/
-
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_no_atms/
-
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_no_atms/
-
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_no_atms/
-
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_no_atms/
-
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_no_atms/
-
-      .. dropdown:: ATMS Summary Statistics
-         :color: secondary
-
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_no_atms/
-
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_no_atms/
-
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_no_atms/
-
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_no_atms/
-
-
       .. dropdown:: GNSSRO
          :color: secondary
 
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_no_atms/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_no_atms/obs-diag/gnssro_hist.png
 
       .. dropdown:: Conventional
          :color: secondary
 
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_no_atms/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_no_atms/obs-diag/conventional_ps_hist.png
 
       .. dropdown:: Satellite Winds
          :color: secondary
 
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_no_atms/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_no_atms/obs-diag/satwnd_u_hist.png
 
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_no_atms/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_no_atms/obs-diag/satwnd_v_hist.png
 
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_no_atms/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_no_atms/obs-diag/scatwnd_u_hist.png
 
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_no_atms/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_no_atms/obs-diag/scatwnd_v_hist.png
 
 
    .. dropdown:: Spectral Diagnostics
@@ -1098,35 +1050,29 @@ No ATMS
       .. dropdown:: Specific Humidity
          :color: secondary
 
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_no_atms/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_no_atms/spectra-inc/sphum_inc_ctrl_vs_no_atms_spectra_L126.png
 
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_no_atms/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_no_atms/spectra-inc/sphum_inc_ctrl_vs_no_atms_spectra_L75.png
 
 
       .. dropdown:: Temperature (T)
          :color: secondary
 
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_no_atms/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_no_atms/spectra-inc/T_inc_ctrl_vs_no_atms_spectra_L126.png
 
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_no_atms/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_no_atms/spectra-inc/T_inc_ctrl_vs_no_atms_spectra_L75.png
 
       .. dropdown:: Zonal Wind (U)
          :color: secondary
 
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_no_atms/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_no_atms/spectra-inc/u_inc_ctrl_vs_no_atms_spectra_L126.png
 
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_no_atms/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_no_atms/spectra-inc/u_inc_ctrl_vs_no_atms_spectra_L75.png
 
       .. dropdown:: Meridional Wind (V)
          :color: secondary
 
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_no_atms/
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_no_atms/spectra-inc/v_inc_ctrl_vs_no_atms_spectra_L126.png
 
-         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_no_atms/
-
-
-
-
-
-
+         .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day3_no_atms/spectra-inc/v_inc_ctrl_vs_no_atms_spectra_L75.png
 
