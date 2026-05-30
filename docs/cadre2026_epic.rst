@@ -292,20 +292,21 @@ For the increment plots, open ``increment_maps.yaml``, and change the paths to p
 
    experiments:
      - name: ctrl
-       prefix: "/work2/noaa/epic-explorer/<username>/CADRE-DA-training/year2_cases/exp_case/cadre26.8939236/output/ufsda.t00z.atminc.cubed_sphere_grid.tile"
+       prefix: "/work2/noaa/epic-explorer/<username>/CADRE-DA-training/year2_cases/exp_case/cadre26.control/output/ufsda.t00z.atminc.cubed_sphere_grid.tile"
 
    grid:
-     prefix: "/work2/noaa/epic-explorer/<username>/CADRE-DA-training/year2_cases/exp_case/cadre26.8939236/grid/C96_grid.tile"
+     prefix: "/work2/noaa/epic-explorer/<username>/CADRE-DA-training/year2_cases/exp_case/cadre26.control/grid/C96_grid.tile"
 
-   output_dir: "/work2/noaa/epic-explorer/<username>/CADRE-DA-training/year2_cases/exp_case/cadre26.8939236/plots/inc_plots"
+   output_dir: "./plots/inc_plots"
+
+   amplify:
+     enabled: false
+     factor: 8.0
+     apply_to_diff: false
 
 .. note:: 
 
    The script will not convert ``$USER`` or ``$HOME`` to their actual values, so users must type out the literal values in the path. Additionally, users will need to change the ``cadre26.8939236`` directory name to match their directory. 
-
-Users may also choose to add or remove variables and levels, although this has not been tested. 
-
-.. COMMENT: Check on above statement^
 
 Then, run the following command to generate the plots: 
 
@@ -320,10 +321,10 @@ For the observation diagnostics plots, open ``obs_diag.yaml``. Change the ``outp
 
 .. code-block:: yaml
 
-   output_dir: "/work2/noaa/epic-explorer/<username>/CADRE-DA-training/year2_cases/exp_case/cadre26.8939236/plots/obs-diag-plots"
+   output_dir: "./plots/obs-diag"
 
    # Shared prefix for all diag files
-   prefix_root: "/work2/noaa/epic-explorer/<username>/CADRE-DA-training/year2_cases/exp_case/cadre26.8939236/output"
+   prefix_root: "/work2/noaa/epic-explorer/<username>/CADRE-DA-training/year2_cases/exp_case/cadre26.control/output"
    
    observations:
 
@@ -350,7 +351,7 @@ For the power spectra analysis plots, adjust the file locations to point to your
 .. code-block:: yaml
 
    background:
-     atm_file: "/work2/noaa/epic-explorer/<username>/CADRE-DA-training/year2_cases/exp_case/cadre26.8939236/bkg/ufsda.t18z.atm.f006.cubed_sphere_grid.nc"
+     atm_file: "/work2/noaa/epic-explorer/<username>/CADRE-DA-training/year2_cases/exp_case/cadre26.control/bkg/ufsda.t18z.atm.f006.cubed_sphere_grid.nc"
      vars:
        - ugrd
        - vgrd
@@ -358,8 +359,8 @@ For the power spectra analysis plots, adjust the file locations to point to your
        - spfh
 
    increments:
-     prefix: "/work2/noaa/epic-explorer/<username>/CADRE-DA-training/year2_cases/exp_case/cadre26.8939236/output/ufsda.t00z.atminc.cubed_sphere_grid.tile"
-     grid_prefix: "/work2/noaa/epic-explorer/<username>/CADRE-DA-training/year2_cases/exp_case/cadre26.8939236/grid/C96_grid.tile"
+     prefix: "/work2/noaa/epic-explorer/<username>/CADRE-DA-training/year2_cases/exp_case/cadre26.control/output/ufsda.t00z.atminc.cubed_sphere_grid.tile"
+     grid_prefix: "/work2/noaa/epic-explorer/<username>/CADRE-DA-training/year2_cases/exp_case/cadre26.control/grid/C96_grid.tile"
      vars:
        - u_inc
        - v_inc
@@ -372,7 +373,7 @@ For the power spectra analysis plots, adjust the file locations to point to your
      levels:
        - 126
        - 75
-     output_dir: "/work2/noaa/epic-explorer/<username>/CADRE-DA-training/year2_cases/exp_case/cadre26.8939236/plots/spectra-bkg-inc"
+     output_dir: "./plots/spectra-bkg-inc"
 
 Then, run the following command to generate the plots: 
 
@@ -381,14 +382,22 @@ Then, run the following command to generate the plots:
     ufsda-spectra-bkg-inc --yaml spectra_bkg_inc.yaml
 
 JEDI Logs
-```````````
+"""""""""""
 
 To produce a JEDI DA summary diagnostics report, run the ``ufsda-jedi-log``
 
 .. code-block:: bash
    
-    ufsda-jedi-log $HOME/CADRE-DA-training/year2_cases/exp_case/cadre26.8939236/OUTPUT.fv3jedi --output $HOME/CADRE-DA-training/year2_cases/exp_case/cadre26.8939236/day1_log_report.txt
+    ufsda-jedi-log $HOME/CADRE-DA-training/year2_cases/exp_case/cadre26.8939236/OUTPUT.fv3jedi --output ./day1_log_report.txt
 
+Download Plots
+""""""""""""""""
+
+To download the plots onto the local system for viewing, users can run the ``scp`` command: 
+
+.. code-block:: bash
+
+   scp -r <username>@hercules-login.hpc.msstate.edu:/work2/noaa/epic-explorer/gpetro/CADRE-DA-training/diagnostic/yamls/day1/plots/*/*.png .
 
 Day 2: Background Error Experiments (Hybrid Weight, NICAS)
 ------------------------------------------------------------
@@ -447,14 +456,15 @@ For example, to generate the hybrid weight increment plots, change the experimen
    grid:
      prefix: "/work2/noaa/epic-explorer/<username>/CADRE-DA-training/year2_cases/exp_case/cadre26.<exp_name>/grid/C96_grid.tile"
 
-   output_dir: "./day2_<exp_name>/inc_plots"
+   output_dir: "./plots/inc_plots"
    ...
 
 Then, to generate the observation diagnostics plots, update the ``obs_diag.yaml`` file: 
 
 .. code-block:: yaml
 
-   ...
+   output_dir: "./plots/obs-diag"
+
    # Shared prefix for all diag files
    prefix_root: "/work2/noaa/epic-explorer/<username>/CADRE-DA-training/year2_cases/exp_case/cadre26.<exp_name>/output"
 
@@ -483,6 +493,8 @@ To generate the power spectra analysis plots:
    grid:
      prefix: "/work2/noaa/epic-explorer/<username>/CADRE-DA-training/year2_cases/exp_case/cadre26.<exp_name>/grid/C96_grid.tile"
 
+   output_dir: "./plots/spectra-inc"
+
 
 Run the diagnostics package to generate the plots for the experiment:
 
@@ -493,6 +505,12 @@ Run the diagnostics package to generate the plots for the experiment:
     ufsda-obs-diag --yaml obs_diag.yaml
     ufsda-jedi-log /work2/noaa/epic-explorer/<username>/CADRE-DA-training/year2_cases/exp_case/cadre26.<exp_name>/OUTPUT.fv3jedi \
         --output <exp_name>_log_report.txt
+
+To download the plots onto the local system for viewing, users can run the ``scp`` command: 
+
+.. code-block:: bash
+
+   scp -r <username>@hercules-login.hpc.msstate.edu:/work2/noaa/epic-explorer/gpetro/CADRE-DA-training/diagnostic/yamls/day2_<exp_name>/plots/*/*.png .
 
 Day 3: Observation Experiments (Thinning, Obs Error)
 -----------------------------------------------------
@@ -553,14 +571,15 @@ For example, to generate the hybrid weight increment plots, change the experimen
    grid:
      prefix: "/work2/noaa/epic-explorer/<username>/CADRE-DA-training/year2_cases/exp_case/cadre26.<exp_name>/grid/C96_grid.tile"
 
-   output_dir: "./day3_<exp_name>/inc_plots"
+   output_dir: "./plots/inc_plots"
    ...
 
 Then, to generate the observation diagnostics plots, update the ``obs_diag.yaml`` file: 
 
 .. code-block:: yaml
 
-   ...
+   output_dir: "./plots/obs-diag"
+
    # Shared prefix for all diag files
    prefix_root: "/work2/noaa/epic-explorer/<username>/CADRE-DA-training/year2_cases/exp_case/cadre26.<exp_name>/output"
 
@@ -589,7 +608,7 @@ To generate the power spectra analysis plots:
    grid:
      prefix: "/work2/noaa/epic-explorer/<username>/CADRE-DA-training/year2_cases/exp_case/cadre26.<exp_name>/grid/C96_grid.tile"
 
-
+   output_dir: "./plots/spectra-inc"
 
 .. code-block:: bash
 
@@ -599,12 +618,17 @@ To generate the power spectra analysis plots:
     ufsda-jedi-log /work2/noaa/epic-explorer/<username>/CADRE-DA-training/year2_cases/exp_case/cadre26.<exp_name>/OUTPUT.fv3jedi \
         --output day3_log_report.txt
 
+To download the plots onto the local system for viewing, users can run the ``scp`` command: 
+
+.. code-block:: bash
+
+   scp -r <username>@hercules-login.hpc.msstate.edu:/work2/noaa/epic-explorer/gpetro/CADRE-DA-training/diagnostic/yamls/day3_<exp_name>/plots/*/*.png .
 
 Notes
 -----
 
-* All YAML files referenced above should be copied from the CADRE-DA-training
-  repository into your working ``input_yaml`` directory.
+* All YAML files referenced above can be copied from the CADRE-DA-training
+  repository into your working ``input_yaml`` directory instead.
 * The diagnostics output directories will be created automatically.
 * Figures and tables generated by the diagnostics toolkit can be used
   directly in the CADRE 2026 training slides and documentation.
