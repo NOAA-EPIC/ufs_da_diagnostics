@@ -1,4 +1,4 @@
 .. code-block:: bash
 
     export MPLBACKEND=Agg
-    source /work/noaa/epic/jongkim/hercules.anaconda
+    source /work2/noaa/epic-explorer/cadre2026/hercules.anaconda

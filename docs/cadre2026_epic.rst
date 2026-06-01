@@ -172,6 +172,7 @@ After the experiment has finished running, it can be helpful to rename the direc
 
 .. code-block:: bash
 
+   cd exp_case
    mv cadre26.8939236 cadre26.control
 
 Prebuilt Experiment Outputs
@@ -181,7 +182,7 @@ All prebuilt CADRE 2026 experiment outputs are available at:
 
 .. code-block:: text
 
-    /work2/noaa/epic/CADRE2026
+   /work2/noaa/epic-explorer/cadre2026
 
 Example directory listing:
 
@@ -225,12 +226,6 @@ Optionally, save your epic-explorer directory in an environment variable:
 .. include:: code-snippets/set-HOME.rst
 
 If you choose not to perform this step, you will need to type out the full path to your directory wherever it says ``$HOME``. 
-
-Navigate to your experiment directory:
-
-.. code-block:: console
-
-   cd $HOME/CADRE-DA-training/year2_cases/exp_case
 
 Diagnostics YAML templates for all CADRE 2026 training days are already
 available under:
@@ -388,7 +383,7 @@ To produce a JEDI DA summary diagnostics report, run the ``ufsda-jedi-log``
 
 .. code-block:: bash
    
-    ufsda-jedi-log $HOME/CADRE-DA-training/year2_cases/exp_case/cadre26.8939236/OUTPUT.fv3jedi --output ./day1_log_report.txt
+    ufsda-jedi-log $HOME/CADRE-DA-training/year2_cases/exp_case/cadre26.control/OUTPUT.fv3jedi --output ./day1_log_report.txt
 
 Download Plots
 """"""""""""""""
@@ -397,7 +392,7 @@ To download the plots onto the local system for viewing, users can run the ``scp
 
 .. code-block:: bash
 
-   scp -r <username>@hercules-login.hpc.msstate.edu:/work2/noaa/epic-explorer/gpetro/CADRE-DA-training/diagnostic/yamls/day1/plots/*/*.png .
+   scp -r <username>@hercules-login.hpc.msstate.edu:/work2/noaa/epic-explorer/<username>/CADRE-DA-training/diagnostic/yamls/day1/plots/*/*.png ./plots
 
 Day 2: Background Error Experiments (Hybrid Weight, NICAS)
 ------------------------------------------------------------
@@ -510,7 +505,7 @@ To download the plots onto the local system for viewing, users can run the ``scp
 
 .. code-block:: bash
 
-   scp -r <username>@hercules-login.hpc.msstate.edu:/work2/noaa/epic-explorer/gpetro/CADRE-DA-training/diagnostic/yamls/day2_<exp_name>/plots/*/*.png .
+   scp -r <username>@hercules-login.hpc.msstate.edu:/work2/noaa/epic-explorer/<username>/CADRE-DA-training/diagnostic/yamls/day2_<exp_name>/plots/*/*.png ./plots
 
 Day 3: Observation Experiments (Thinning, Obs Error)
 -----------------------------------------------------
@@ -622,7 +617,7 @@ To download the plots onto the local system for viewing, users can run the ``scp
 
 .. code-block:: bash
 
-   scp -r <username>@hercules-login.hpc.msstate.edu:/work2/noaa/epic-explorer/gpetro/CADRE-DA-training/diagnostic/yamls/day3_<exp_name>/plots/*/*.png .
+   scp -r <username>@hercules-login.hpc.msstate.edu:/work2/noaa/epic-explorer/<username>/CADRE-DA-training/diagnostic/yamls/day3_<exp_name>/plots/*/*.png ./plots
 
 Notes
 -----
