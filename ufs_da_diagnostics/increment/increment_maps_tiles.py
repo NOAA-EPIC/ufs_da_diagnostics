@@ -339,7 +339,16 @@ def plot_three(Lon, Lat, ctrl, exp, var, lev,
     )
 
     fig = plt.figure(figsize=(18, 5), constrained_layout=True)
-    fig.suptitle(title, y=0.95)
+    #fig.suptitle(title, y=0.95)
+
+    fig.suptitle(
+        title,
+        x=0.0,      # left aligned (your preferred style)
+        y=0.97,     # stable top position
+        ha='left',
+        va='top'
+    )
+    fig.subplots_adjust(top=0.88)
 
     axes = fig.subplots(1, 3, subplot_kw={"projection": ccrs.PlateCarree()})
 
