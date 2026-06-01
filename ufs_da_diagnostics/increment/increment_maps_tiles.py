@@ -213,28 +213,68 @@ def tapered_colorbar(fig, im, ax, label=None):
     return cbar
 
 # ---------------------------------------------------------
+# Zoom helper (NEW)
+# ---------------------------------------------------------
+def apply_zoom(Lon, Lat, field, cfg):
+    """
+    Apply lat/lon bounding-box zoom if enabled in YAML.
+
+    Returns:
+        Lon, Lat, masked_field, extent_tuple or None
+    """
+    zoom_cfg = cfg.get("zoom", {})
+    if not zoom_cfg.get("enabled", False):
+        return Lon, Lat, field, None
+
+    # Require explicit bounds
+    required = ("lat_min", "lat_max", "lon_min", "lon_max")
+    if not all(k in zoom_cfg for k in required):
+        return Lon, Lat, field, None
+
+    lat_min = zoom_cfg["lat_min"]
+    lat_max = zoom_cfg["lat_max"]
+    lon_min = zoom_cfg["lon_min"]
+    lon_max = zoom_cfg["lon_max"]
+
+    # Mask outside the bounding box
+    mask = (
+        (Lat < lat_min) | (Lat > lat_max) |
+        (Lon < lon_min) | (Lon > lon_max)
+    )
+    field_zoom = np.ma.masked_where(mask, field)
+
+    extent = (lon_min, lon_max, lat_min, lat_max)
+    return Lon, Lat, field_zoom, extent
+
+# ---------------------------------------------------------
 # Plot 1‑panel increment map (AMPLIFIED)
 # ---------------------------------------------------------
 def plot_single(Lon, Lat, field, var, lev, exp_name, prefix, outname, cfg):
     """
     Plot a single global increment map for one experiment.
-
-    Amplification is applied if enabled in YAML:
-        amplify:
+    Now supports YAML-driven zoom:
+        zoom:
           enabled: true
-          factor: 8.0
-          apply_to_diff: false
+          lat_min: 30
+          lat_max: 50
+          lon_min: -130
+          lon_max: -60
     """
+
+    # -----------------------------------------------------
+    # NEW: Apply zoom before plotting
+    # -----------------------------------------------------
+    Lon, Lat, field, extent = apply_zoom(Lon, Lat, field, cfg)
+
     pressure = load_pressure(lev)
     title = f"{var} – Level {lev} ({pressure:.1f} mbar) – {exp_name}"
 
     # Base limits from variable type
     vmin, vmax = get_map_limits(var, is_diff=False)
 
-    # Apply amplification (NEW)
+    # Apply amplification (existing feature)
     vmin, vmax = apply_amplification(vmin, vmax, cfg.get("amplify"), is_diff=False)
 
-    # Title annotation for amplified plots
     if cfg.get("amplify", {}).get("enabled", False):
         factor = cfg["amplify"].get("factor", 8.0)
         title += f" (Amplified ×{factor})"
@@ -244,7 +284,15 @@ def plot_single(Lon, Lat, field, var, lev, exp_name, prefix, outname, cfg):
     fig.suptitle(title, y=0.96, x=0.15, ha="left")
 
     ax = fig.add_subplot(1, 1, 1, projection=ccrs.PlateCarree())
-    ax.set_global()
+
+    # -----------------------------------------------------
+    # NEW: Use zoom extent if provided
+    # -----------------------------------------------------
+    if extent:
+        ax.set_extent(extent, crs=ccrs.PlateCarree())
+    else:
+        ax.set_global()
+
     ax.add_feature(cfeature.LAND, facecolor="lightgray")
     ax.add_feature(cfeature.COASTLINE, linewidth=0.5)
 
@@ -262,12 +310,19 @@ def plot_single(Lon, Lat, field, var, lev, exp_name, prefix, outname, cfg):
 def plot_three(Lon, Lat, ctrl, exp, var, lev,
                ctrl_name, exp_name, outname, cfg):
     """
-    Plot CTRL, EXP, and DIFF (EXP − CTRL) increment maps.
-
-    Amplification is applied to CTRL and EXP panels.
-    DIFF amplification is optional (YAML: apply_to_diff).
+    Plot CTRL, EXP, and DIFF increment maps.
+    Now supports YAML-driven zoom.
     """
+
     diff = exp - ctrl
+
+    # -----------------------------------------------------
+    # NEW: Apply zoom to all three fields
+    # -----------------------------------------------------
+    Lon, Lat, ctrl, extent = apply_zoom(Lon, Lat, ctrl, cfg)
+    _,   _,   exp,  _      = apply_zoom(Lon, Lat, exp,  cfg)
+    _,   _,   diff, _      = apply_zoom(Lon, Lat, diff, cfg)
+
     pressure = load_pressure(lev)
     title = f"{var} – Level {lev} ({pressure:.1f} mbar)"
 
@@ -275,12 +330,10 @@ def plot_three(Lon, Lat, ctrl, exp, var, lev,
     vmin_map, vmax_map = get_map_limits(var, is_diff=False)
     vmin_diff, vmax_diff = get_map_limits(var, is_diff=True)
 
-    # Apply amplification to CTRL and EXP
+    # Apply amplification
     vmin_map, vmax_map = apply_amplification(
         vmin_map, vmax_map, cfg.get("amplify"), is_diff=False
     )
-
-    # Apply amplification to DIFF only if allowed
     vmin_diff, vmax_diff = apply_amplification(
         vmin_diff, vmax_diff, cfg.get("amplify"), is_diff=True
     )
@@ -294,7 +347,11 @@ def plot_three(Lon, Lat, ctrl, exp, var, lev,
     # CTRL panel
     # -------------------------
     ax = axes[0]
-    ax.set_global()
+    if extent:
+        ax.set_extent(extent, crs=ccrs.PlateCarree())
+    else:
+        ax.set_global()
+
     ax.add_feature(cfeature.LAND, facecolor="lightgray")
     ax.add_feature(cfeature.COASTLINE, linewidth=0.5)
     im0 = ax.pcolormesh(Lon, Lat, ctrl, cmap="coolwarm",
@@ -306,7 +363,11 @@ def plot_three(Lon, Lat, ctrl, exp, var, lev,
     # EXP panel
     # -------------------------
     ax = axes[1]
-    ax.set_global()
+    if extent:
+        ax.set_extent(extent, crs=ccrs.PlateCarree())
+    else:
+        ax.set_global()
+
     ax.add_feature(cfeature.LAND, facecolor="lightgray")
     ax.add_feature(cfeature.COASTLINE, linewidth=0.5)
     im1 = ax.pcolormesh(Lon, Lat, exp, cmap="coolwarm",
@@ -318,7 +379,11 @@ def plot_three(Lon, Lat, ctrl, exp, var, lev,
     # DIFF panel
     # -------------------------
     ax = axes[2]
-    ax.set_global()
+    if extent:
+        ax.set_extent(extent, crs=ccrs.PlateCarree())
+    else:
+        ax.set_global()
+
     ax.add_feature(cfeature.LAND, facecolor="lightgray")
     ax.add_feature(cfeature.COASTLINE, linewidth=0.5)
     im2 = ax.pcolormesh(Lon, Lat, diff, cmap="coolwarm",
@@ -328,6 +393,7 @@ def plot_three(Lon, Lat, ctrl, exp, var, lev,
 
     plt.savefig(outname, dpi=150)
     plt.close()
+
 # ---------------------------------------------------------
 # Zonal‑mean (single experiment) with amplification
 # ---------------------------------------------------------
