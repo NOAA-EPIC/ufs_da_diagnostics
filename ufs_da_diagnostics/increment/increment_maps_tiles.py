@@ -338,7 +338,7 @@ def plot_three(Lon, Lat, ctrl, exp, var, lev,
         vmin_diff, vmax_diff, cfg.get("amplify"), is_diff=True
     )
 
-    fig = plt.figure(figsize=(18, 5), constrained_layout=True)
+    fig = plt.figure(figsize=(18, 5))
     #fig.suptitle(title, y=0.95)
 
     fig.suptitle(
