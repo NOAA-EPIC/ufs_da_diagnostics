@@ -93,6 +93,9 @@ def load_bkg_field_global(atm_file, varname, level):
         method="nearest"
     )
 
+    # subtract global mean (recommended for background spectra)
+    field_interp = field_interp - np.nanmean(field_interp)
+
     return field_interp
 
 
