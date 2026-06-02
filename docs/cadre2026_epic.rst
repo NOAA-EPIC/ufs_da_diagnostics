@@ -388,7 +388,7 @@ To produce a JEDI DA summary diagnostics report, run the ``ufsda-jedi-log``
 Download Plots
 """"""""""""""""
 
-To download the plots onto the local system for viewing, users can run the ``scp`` command: 
+To download the plots onto the local system for viewing, users can run the ``scp`` command in a new terminal window: 
 
 .. code-block:: bash
 
@@ -434,7 +434,7 @@ Then, navigate to the diagnostics YAMLs, and adjust the data paths in each YAML 
 
    cd $HOME/CADRE-DA-training/diagnostic/yamls/day2_<exp_name>
 
-where ``<exp_name>`` is ``hyb_weight`` or ``nicas_length_scale``.
+where ``<exp_name>`` is ``hyb_weight`` or ``nicas_scale``.
 
 For example, to generate the hybrid weight increment plots, change the experiment paths in ``increment_maps.yaml`` to point to your experiment output: 
 
@@ -501,7 +501,7 @@ Run the diagnostics package to generate the plots for the experiment:
     ufsda-jedi-log /work2/noaa/epic-explorer/<username>/CADRE-DA-training/year2_cases/exp_case/cadre26.<exp_name>/OUTPUT.fv3jedi \
         --output <exp_name>_log_report.txt
 
-To download the plots onto the local system for viewing, users can run the ``scp`` command: 
+To download the plots onto the local system for viewing, users can run the ``scp`` command in a new terminal window: 
 
 .. code-block:: bash
 
@@ -613,7 +613,7 @@ To generate the power spectra analysis plots:
     ufsda-jedi-log /work2/noaa/epic-explorer/<username>/CADRE-DA-training/year2_cases/exp_case/cadre26.<exp_name>/OUTPUT.fv3jedi \
         --output day3_log_report.txt
 
-To download the plots onto the local system for viewing, users can run the ``scp`` command: 
+To download the plots onto the local system for viewing, users can run the ``scp`` command in a new terminal window: 
 
 .. code-block:: bash
 
