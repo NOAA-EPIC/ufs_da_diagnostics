@@ -42,11 +42,14 @@ The control case performs data assimilation for February 24, 2024. Globally, thi
 Logging Into Hercules
 ---------------------
 
-Use SSH with X11 forwarding enabled:
+Use SSH and verify environment:
 
 .. code-block:: bash
 
     ssh -X YOUR_USERID@hercules-login.hpc.msstate.edu
+    module load contrib noaatools
+    saccount_params
+    groups
 
 For detailed system login instructions (macOS/Windows, SSH, X11, PuTTY, XQuartz),
 including screenshots and troubleshooting notes, see
@@ -204,12 +207,9 @@ applied to the output files.
 
 The diagnostics toolkit is installed at:
 
-.. COMMENT: 
-   Update path below so that it does not point to Jong
-
 .. code-block:: text
 
-    /work/noaa/epic/jongkim/ufs_da_diagnostics
+   /work2/noaa/epic-explorer/cadre2026/hercules.anaconda
 
 Activate the Environment
 ``````````````````````````
@@ -236,8 +236,8 @@ available under:
     $HOME/CADRE-DA-training/diagnostics/yamls/day2_hyb_weight
     $HOME/CADRE-DA-training/diagnostics/yamls/day2_nicas_length_scale
     $HOME/CADRE-DA-training/diagnostics/yamls/day3_atms_thining
-    $HOME/CADRE-DA-training/diagnostics/yamls/day3_atms_err_03
-    $HOME/CADRE-DA-training/diagnostics/yamls/day3_atms_err_08
+    $HOME/CADRE-DA-training/diagnostics/yamls/day3_atms_err
+    $HOME/CADRE-DA-training/diagnostics/yamls/day3_no_atms
 
 Before running the diagnostics, edit the YAML files for the
 corresponding day to set:
@@ -393,6 +393,37 @@ To download the plots onto the local system for viewing, users can run the ``scp
 .. code-block:: bash
 
    scp -r <username>@hercules-login.hpc.msstate.edu:/work2/noaa/epic-explorer/<username>/CADRE-DA-training/diagnostic/yamls/day1/plots/*/*.png ./plots
+
+Key Aspects to Verify Day 1 Experiment Outputs
+----------------------------------------------
+
+- Increment maps: smooth, physically consistent
+- Zonal-mean increments: balanced vertical structure
+- OMB/OMA: OMA variance < OMB variance
+- Jo convergence: decreasing cost function
+- Jo/p:reasonal range 
+- Baseline power spectra: correct scale separation
+
+Optional Single-Obs Experiments
+-------------------------------
+
+Single-observation YAMLs are available under:
+
+.. code-block:: text
+
+    CADRE-DA-training/year2_cases/input_yaml/single_obs
+
+These include input yaml file directories for control, NICAS length-scale, hybrid-weight, and ATMS obs-error cases.
+
+To run:
+
+.. code-block:: bash
+
+    cd /work2/noaa/epic-explorer/$USER/CADRE-DA-training/year2_cases
+    cp ./input_yaml/single_obs/<case>/*.yaml ./input_yaml
+    sbatch run_3dvar_hercules.sh
+
+Diagnostics can be applied the same way as above.
 
 Day 2: Background Error Experiments (Hybrid Weight, NICAS)
 ------------------------------------------------------------

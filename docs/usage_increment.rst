@@ -20,7 +20,6 @@ This tool loads FV3 tiles, constructs global stitched fields, and
 computes zonal‑mean cross sections for each variable and level specified
 in the YAML file.
 
-
 Example Figures
 ---------------
 
@@ -35,7 +34,6 @@ Global Increment Map
    model level 126. Positive increments indicate moistening applied
    by the analysis, while negative increments indicate drying.
 
-
 Zonal‑Mean Increment Cross‑Section
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -46,7 +44,6 @@ Zonal‑Mean Increment Cross‑Section
    Full‑vertical zonal‑mean increment cross‑section for specific
    humidity. This view highlights the vertical structure and
    latitudinal distribution of the analysis increments.
-
 
 YAML Configuration
 ------------------
@@ -74,6 +71,59 @@ A minimal YAML configuration for increment maps:
       - 126
       - 75
 
+Amplification Options
+---------------------
+
+Increment fields are often small in magnitude, especially for humidity
+and wind components. To improve visual interpretability, the increment
+diagnostics support optional amplification of plotted fields.
+
+Amplification is controlled through the ``amplify`` section of the YAML
+configuration:
+
+.. code-block:: yaml
+
+    amplify:
+      enabled: true
+      factor: 2.0
+      apply_to_diff: false
+
+Options
+~~~~~~~
+
+``enabled``  
+    Enables or disables amplification. When ``true``, all CTRL and EXP
+    fields are multiplied by the specified factor before plotting.
+
+``factor``  
+    Scalar multiplier applied to increment values. Typical values range
+    from 1.5 to 5.0 depending on variable magnitude.
+
+``apply_to_diff``  
+    Controls whether the DIFF field (``EXP − CTRL``) is also amplified.
+    By default this is ``false`` to preserve the true magnitude of
+    experiment differences. When set to ``true``, the DIFF field is
+    amplified using the same factor.
+
+Behavior Summary
+~~~~~~~~~~~~~~~~
+
+* CTRL fields → amplified when ``enabled: true``  
+* EXP fields → amplified when ``enabled: true``  
+* DIFF fields → amplified **only** when ``apply_to_diff: true``  
+* Zonal‑mean plots follow the same rules
+
+Example
+~~~~~~~
+
+To amplify all fields including DIFF by a factor of 2:
+
+.. code-block:: yaml
+
+    amplify:
+      enabled: true
+      factor: 2.0
+      apply_to_diff: true
 
 Outputs
 -------

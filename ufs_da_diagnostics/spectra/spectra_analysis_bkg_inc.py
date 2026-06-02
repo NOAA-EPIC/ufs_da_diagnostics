@@ -93,6 +93,9 @@ def load_bkg_field_global(atm_file, varname, level):
         method="nearest"
     )
 
+    # subtract global mean (recommended for background spectra)
+    field_interp = field_interp - np.nanmean(field_interp)
+
     return field_interp
 
 
@@ -140,13 +143,28 @@ def plot_bkg_overlay(k, Ek_bkg, Ek_inc, long_name, level, outname, pct_text):
     ax.grid(True, which="both", alpha=0.3)
     ax.legend()
 
+    #ax.text(
+    #    0.02, 0.02,
+    #    pct_text + "\n"
+    #    "Expected DA contribution:\n"
+    #    "  Large scales (k<10): 0.5–5%\n"
+    #    "  Mid scales (10<k<40): 0.1–1%\n"
+    #    "  Small scales (k>40): 0.01–0.1%",
+    #    transform=ax.transAxes,
+    #    fontsize=8,
+    #    color="black",
+    #    verticalalignment="bottom",
+    #    bbox=dict(
+    #        facecolor="white",
+    #        edgecolor="black",
+    #        boxstyle="round,pad=0.3",
+    #        alpha=0.7
+    #    )
+    #)
+
     ax.text(
         0.02, 0.02,
-        pct_text + "\n"
-        "Expected DA contribution:\n"
-        "  Large scales (k<10): 0.5–5%\n"
-        "  Mid scales (10<k<40): 0.1–1%\n"
-        "  Small scales (k>40): 0.01–0.1%",
+        pct_text,
         transform=ax.transAxes,
         fontsize=8,
         color="black",
@@ -157,7 +175,7 @@ def plot_bkg_overlay(k, Ek_bkg, Ek_inc, long_name, level, outname, pct_text):
             boxstyle="round,pad=0.3",
             alpha=0.7
         )
-    )
+    )  
 
     fig.tight_layout()
     fig.savefig(outname, dpi=150)
