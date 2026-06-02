@@ -4,6 +4,15 @@ CADRE DA Diagnostic Images
 Day 1 Plots
 ------------
 
+   .. dropdown:: Weather Synoptic Background Plots
+      :color: primary
+
+      .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day1_ctrl/weather_synoptic_bkg/weather_baroclinic_850.png
+         
+      .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day1_ctrl/weather_synoptic_bkg/weather_cyclones_500.png
+         
+      .. figure:: https://raw.githubusercontent.com/wiki/NOAA-EPIC/CADRE-DA-training/day1_ctrl/weather_synoptic_bkg/weather_jets_250.png
+
    .. dropdown:: Increment Plots
       :color: primary
       
