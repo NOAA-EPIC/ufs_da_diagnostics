@@ -582,7 +582,7 @@ Then, navigate to the diagnostics YAMLs, and adjust the data paths in each YAML 
 
 where ``<exp_name>`` is ``atm_thinning``, ``atms_err``, or ``no_atms``. 
 
-For example, to generate the hybrid weight increment plots, change the experiment paths in ``increment_maps.yaml`` to point to your experiment output: 
+For example, to generate the increment plots, change the experiment paths in ``increment_maps.yaml`` to point to your experiment output: 
 
 .. code-block:: yaml
    
@@ -641,6 +641,7 @@ To generate the power spectra analysis plots:
     ufsda-spectra-ana-inc --yaml spectra_ana_inc.yaml
     ufsda-inc-maps --yaml increment_maps.yaml
     ufsda-obs-diag --yaml obs_diag.yaml
+    ufsda-obs-br-check --yaml obs_diag.yaml
     ufsda-jedi-log /work2/noaa/epic-explorer/<username>/CADRE-DA-training/year2_cases/exp_case/cadre26.<exp_name>/OUTPUT.fv3jedi \
         --output day3_log_report.txt
 
