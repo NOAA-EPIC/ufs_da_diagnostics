@@ -1,0 +1,14 @@
+# Sphinx build output
+docs/_build/
+
+# Python cache
+__pycache__/
+*/__pycache__/
+
+# Packaging artifacts
+*.egg-info/
+build/
+dist/
+
+# Autosummary output (if ever generated)
+docs/api/generated/
