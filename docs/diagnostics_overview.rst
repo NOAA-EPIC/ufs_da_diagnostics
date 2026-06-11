@@ -372,6 +372,71 @@ Reference
 - Talagrand, O. (2003). Evaluation of probabilistic prediction systems.
   ECMWF Workshop on Diagnostics for Data Assimilation Systems.
 
+Innovation-Space Error Diagnostics
+----------------------------------
+
+The innovation-space error diagnostics module provides a lightweight
+implementation of the Desroziers et al. (2005) method for estimating
+observation-error variance and background-error contributions using only
+the innovations:
+
+* **OMB** = H(x_b) − y
+* **OMA** = H(x_a) − y
+
+This diagnostic is implemented in
+``ufs_da_diagnostics/obs/innovation_br_check.py`` and is designed to
+operate on the same YAML configuration and data structures used by the
+standard ``obs_diag`` utilities.
+
+The following quantities are computed for each channel or scalar
+observation type:
+
+``Sd = E[OMB^2]``
+    Innovation variance. Represents ``HBH^T + R_true``.
+
+``R_est = E[OMA * OMB]``
+    Desroziers estimate of the true observation-error variance.
+
+``Sd/R``
+    Innovation chi-square proxy. Values < 1 indicate that the assumed
+    ``R`` is too large; values > 1 indicate that the assumed ``R`` is too
+    small.
+
+``R_est/R``
+    Ratio of estimated to assumed observation-error variance. This is the
+    Desroziers variance scaling factor.
+
+``HBH^T = Sd - R_est``
+    Background-error contribution to the innovation variance.
+
+``HBH^T/R``
+    Background-to-observation ratio. Values below ~0.3 are typical for
+    microwave radiances.
+
+``scale_R = R_est / R``
+    Recommended variance multiplier for tuning the assumed ``R``.
+
+``infl_chi = sqrt((Sd/R) / chi_target)``
+    Standard-deviation inflation factor required to achieve a target
+    chi-square (default ``chi_target = 0.8``).
+
+Example output for a radiance channel::
+
+    Ch 09: Sd/R=0.158  R_est/R=0.114  HBH^T=0.018  HBH^T/R=0.044
+           scale_R=0.114  infl_chi=0.445
+
+Interpretation:
+
+* ``Sd/R`` well below 1 → assumed ``R`` is too large.
+* ``R_est/R`` confirms the same.
+* ``HBH^T/R`` small → background contribution is modest.
+* ``scale_R`` suggests reducing the assumed variance.
+* ``infl_chi`` suggests reducing the standard deviation.
+
+This diagnostic is intended for routine monitoring of observation-error
+consistency and for guiding observation-error tuning in UFS DA workflows.
+
+
 Weather Events Diagnostics
 --------------------------
 
