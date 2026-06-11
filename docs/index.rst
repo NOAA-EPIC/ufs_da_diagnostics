@@ -26,6 +26,7 @@ Contents
     usage_observation_tools
     usage_logs
     usage_plots
+    usage_innovation_br_check
     usage_single_obs
     usage_weather_events
 
@@ -39,6 +40,7 @@ Contents
     api/obs
     api/log
     api/plots
+    api/innovation_br_check
     api/weather_events_marker
 
 .. toctree::
