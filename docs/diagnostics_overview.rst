@@ -373,7 +373,7 @@ Reference
   ECMWF Workshop on Diagnostics for Data Assimilation Systems.
 
 Innovation-Space Error Diagnostics
-----------------------------------
+==================================
 
 The innovation-space error diagnostics module provides a lightweight
 implementation of the Desroziers et al. (2005) method for estimating
@@ -438,7 +438,7 @@ consistency and for guiding observation-error tuning in UFS DA workflows.
 
 
 Weather Events Diagnostics
---------------------------
+==========================
 
 The weather‑events module provides global synoptic‑scale diagnostics
 derived from FV3 ATM background fields. It identifies dynamically coherent
