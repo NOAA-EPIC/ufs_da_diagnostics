@@ -30,6 +30,31 @@ components:
   scan‑position figures
 
 
+Innovation‑Space Error Diagnostics
+----------------------------------
+
+In addition to standard O–B/O–A statistics, the diagnostics subsystem
+includes an innovation‑space error diagnostic based on the Desroziers
+method. This tool computes innovation variance, estimated
+observation‑error variance, and recommended R‑scaling factors using only
+OMB and OMA. It is implemented in
+``ufs_da_diagnostics/obs/innovation_br_check.py`` and is intended for
+routine monitoring of observation‑error consistency and tuning.
+
+The diagnostic reports:
+
+- **Sd = E[OMB²]** — innovation variance  
+- **R_est = E[OMA × OMB]** — Desroziers estimate of true observation‑error variance  
+- **Sd/R** — innovation chi‑square proxy  
+- **R_est/R** — variance‑scaling factor  
+- **HBHᵀ = Sd − R_est** — background‑error contribution  
+- **scale_R = R_est / R** — recommended R multiplier  
+- **infl_chi** — standard‑deviation inflation needed to reach a target chi‑square
+
+These quantities provide a lightweight, observation‑space method for
+evaluating the consistency of assumed observation‑error variances.
+
+
 Workflow
 --------
 
