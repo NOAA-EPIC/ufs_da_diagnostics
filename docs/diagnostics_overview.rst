@@ -35,8 +35,14 @@ statistics—the toolkit includes two advanced diagnostic components:
 In addition, the toolkit supports a **chi‑squared consistency check**
 through automated parsing of JEDI log files. This diagnostic evaluates
 whether the ratio :math:`\mathrm{Jo}/p` approaches unity, indicating
-consistency between observation errors, background errors, and the
-resulting analysis increments.
+consistency between the assumed observation‑error variances, the
+background errors, and the resulting analysis increments.
+
+The toolkit also provides an **innovation‑space error diagnostic** based
+on the Desroziers method. This diagnostic uses only the O–B and O–A
+innovations to estimate the true observation‑error variance, assess the
+adequacy of the specified ``R``, and compute recommended variance‑scaling
+factors for tuning observation errors in UFS DA workflows.
 
 The following sections describe the mathematical formulation of these
 diagnostics and provide example figures illustrating their use.
