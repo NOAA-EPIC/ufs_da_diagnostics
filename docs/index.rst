@@ -49,9 +49,7 @@ Contents
 
    appendix_system_access
    appendix_slurm_basics
-   appendix_filesystem_modules
    appendix_aws_parallel_cluster
-   appendix_obs_br_check
 
 .. toctree::
     :maxdepth: 1
